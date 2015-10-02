@@ -1,0 +1,5 @@
+info:
+  app:
+    name: MyService
+    description: My awesome service
+    version: 1.0.0
