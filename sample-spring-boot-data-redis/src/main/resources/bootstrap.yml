@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: sample-spring-boot-data-redis
+    
+---
+spring:
+    profiles:
+        active: default
+    
