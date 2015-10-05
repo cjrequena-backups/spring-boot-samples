@@ -1,9 +1,11 @@
 spring:
   application:
-    name: sample-spring-boot-data-redis
-    
----
-spring:
-    profiles:
-        active: default
-    
+    name: sample_spring_boot_data_redis
+  cloud:
+    config:
+     enabled: true
+     uri: http://localhost:8888
+     failFast: true
+  profiles:
+    active: dev
+       
