@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class SampleApp {
+public class SampleBootMainApp {
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(SampleApp.class, args);
+		SpringApplication.run(SampleBootMainApp.class, args);
 	}
 }
