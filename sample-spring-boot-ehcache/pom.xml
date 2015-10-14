@@ -4,25 +4,14 @@
 	<groupId>com.sample</groupId>
 	<artifactId>sample-spring-boot-ehcache</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>com.sample</groupId>
+		<artifactId>spring-boot-samples-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-		<spring.version>4.1.5.RELEASE</spring.version>
-		<spring-boot.version>1.2.6.RELEASE</spring-boot.version>
-		<spring-cloud.version>1.0.0.RELEASE</spring-cloud.version>
-		<ehcache.version>2.10.0</ehcache.version>
+		<start-class>com.sample.SampleEhCacheMainApp</start-class>
 	</properties>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-parent</artifactId>
-				<version>${spring-boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,12 +33,10 @@
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
-			<version>${ehcache.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -59,10 +46,23 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring-boot.version}</version>
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

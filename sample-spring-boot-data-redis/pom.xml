@@ -4,90 +4,14 @@
 	<groupId>com.sample</groupId>
 	<artifactId>sample-spring-boot-data-redis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>com.sample</groupId>
+		<artifactId>spring-boot-samples-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-		<spring-boot.version>1.2.6.RELEASE</spring-boot.version>
-		<spring-cloud.version>1.0.0.RELEASE</spring-cloud.version>
-		<jmockit.version>1.19</jmockit.version>
-		<podam.version>6.0.2.RELEASE</podam.version>
-		<junit.version>4.12</junit.version>
-		<assertj-core.version>1.0.0m1</assertj-core.version>
-		<lombok.version>1.16.6</lombok.version>
-		<lombok-maven-version>1.16.2.0</lombok-maven-version>
+		<start-class>com.sample.SampleRedisMainApp</start-class>
 	</properties>
-	<dependencyManagement>
-		<dependencies>
-			<!-- Spring Boot -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-parent</artifactId>
-				<version>${spring-boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-parent</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>		
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-actuator</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<version>${spring-boot.version}</version>
-				<scope>test</scope>
-				<exclusions>
-					<exclusion>
-						<groupId>org.mockito</groupId>
-						<artifactId>mockito-core</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<!-- Testing -->
-			<dependency>
-				<groupId>org.jmockit</groupId>
-				<artifactId>jmockit</artifactId>
-				<version>${jmockit.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>uk.co.jemos.podam</groupId>
-				<artifactId>podam</artifactId>
-				<version>${podam.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.assertj</groupId>
-				<artifactId>assertj-core-java8</artifactId>
-				<version>${assertj-core.version}</version>
-				<scope>test</scope>
-			</dependency>
-			<!-- -->
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lombok.version}</version>
-				<scope>provided</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 		<!-- Spring Boot -->
 		<dependency>
@@ -115,119 +39,25 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
 		</dependency>
-		<!-- Testing -->
-		<dependency>
-			<groupId>org.jmockit</groupId>
-			<artifactId>jmockit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>uk.co.jemos.podam</groupId>
-			<artifactId>podam</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core-java8</artifactId>
-		</dependency>
-		<!-- -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
 	</dependencies>
 	<build>
 		<finalName>${project.artifactId}-${project.version}</finalName>
-		<!-- -->
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
 		<plugins>
-			<!-- -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<!-- -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.10</version>
-				<configuration>
-					<jeeversion>${java.version}</jeeversion>
-					<manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>
-					<downloadSources>false</downloadSources>
-					<downloadJavadocs>false</downloadJavadocs>
-					<additionalProjectFacets>
-						<useProjectReferences>true</useProjectReferences>
-					</additionalProjectFacets>
-				</configuration>
-			</plugin>
-			<!-- -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.7</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<!-- -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.18.1</version>
-				<configuration>
-					<includes>
-						<include>**/*Tests.java</include>
-					</includes>
-					<excludes>
-						<exclude>**/Abstract*.java</exclude>
-					</excludes>
-					<junitArtifactName>junit:junit</junitArtifactName>
-					<argLine>-Xmx512m</argLine>
-				</configuration>
-			</plugin>
-			<!-- -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<archive>
-						<manifestEntries>
-							<Build-Number>${buildNumber}</Build-Number>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<!-- -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<!-- -->
-			<plugin>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok-maven-plugin</artifactId>
-				<version>${lombok-maven-version}</version>
+				<version>${spring-boot.version}</version>
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
