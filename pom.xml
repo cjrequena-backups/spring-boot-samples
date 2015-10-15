@@ -9,15 +9,20 @@
 	<name>spring-boot-samples-parent</name>
 	<developers>
 		<developer>
+			<id>cjrequena</id>
+			<name>Carlos Requena</name>
+			<email>carlosjose.requena@gmail.com</email>
 			<roles>
-				<role></role>
+				<role>
+					Application architect
+				</role>
 			</roles>
 		</developer>
 	</developers>
 	<modules>
 		<module>sample-spring-boot-simple</module>
 		<module>sample-spring-boot-ehcache</module>
-		<module>sample-spring-boot-data-redis</module>		
+		<module>sample-spring-boot-data-redis</module>
 	</modules>
 	<scm>
 		<connection></connection>
@@ -198,14 +203,15 @@
 				<artifactId>validation-api</artifactId>
 				<version>${javax-validation.version}</version>
 			</dependency>
-			<!-- Ehcache is an open source, standards-based cache that boosts performance, offloads your database, and simplifies 
-				scalability. http://www.ehcache.org/ -->
+			<!-- Ehcache is an open source, standards-based cache that boosts performance, 
+				offloads your database, and simplifies scalability. http://www.ehcache.org/ -->
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
 				<artifactId>ehcache</artifactId>
 				<version>${ehcache.version}</version>
 			</dependency>
-			<!-- Jcabi manifests is a convenient static reader of META-INF/MANIFEST.MF files. http://manifests.jcabi.com/ -->
+			<!-- Jcabi manifests is a convenient static reader of META-INF/MANIFEST.MF 
+				files. http://manifests.jcabi.com/ -->
 			<dependency>
 				<groupId>com.jcabi</groupId>
 				<artifactId>jcabi-manifests</artifactId>
@@ -216,8 +222,8 @@
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons-lang3.version}</version>
 			</dependency>
-			<!-- ModelMapper is an intelligent, refactoring safe object mapping library that automatically maps objects to each other. 
-				http://modelmapper.org/ -->
+			<!-- ModelMapper is an intelligent, refactoring safe object mapping library 
+				that automatically maps objects to each other. http://modelmapper.org/ -->
 			<dependency>
 				<groupId>org.modelmapper</groupId>
 				<artifactId>modelmapper</artifactId>
@@ -238,13 +244,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter</artifactId>
-		</dependency>
-		<!-- -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
+			<artifactId>spring-cloud-config-client</artifactId>
 		</dependency>
 		<!-- Testing -->
 		<dependency>
@@ -258,6 +258,12 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+		</dependency>
+		<!-- -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -394,38 +400,15 @@
 				</executions>
 			</plugin>
 			<!--Check Style -->
-			<!--
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${maven-checkstyle-plugin.version}</version>
-				<configuration>
-					<includeTestSourceDirectory>true</includeTestSourceDirectory>
-					<configLocation>${checkstyle.configlocation}</configLocation>
-					<suppressionsLocation>${checkstyle.suppressionslocation}</suppressionsLocation>
-					<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
-				</configuration>
-				<executions>
-					<execution>
-						<id>checkstyle</id>
-						<phase>validate</phase>
-						<goals>
-							<goal>check</goal>
-						</goals>
-						<configuration>
-							<failOnViolation>true</failOnViolation>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>com.puppycrawl.tools</groupId>
-						<artifactId>checkstyle</artifactId>
-						<version>${checkstyle.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			-->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-checkstyle-plugin</artifactId> 
+				<version>${maven-checkstyle-plugin.version}</version> <configuration> <includeTestSourceDirectory>true</includeTestSourceDirectory> 
+				<configLocation>${checkstyle.configlocation}</configLocation> <suppressionsLocation>${checkstyle.suppressionslocation}</suppressionsLocation> 
+				<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression> 
+				</configuration> <executions> <execution> <id>checkstyle</id> <phase>validate</phase> 
+				<goals> <goal>check</goal> </goals> <configuration> <failOnViolation>true</failOnViolation> 
+				</configuration> </execution> </executions> <dependencies> <dependency> <groupId>com.puppycrawl.tools</groupId> 
+				<artifactId>checkstyle</artifactId> <version>${checkstyle.version}</version> 
+				</dependency> </dependencies> </plugin> -->
 			<!-- -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
