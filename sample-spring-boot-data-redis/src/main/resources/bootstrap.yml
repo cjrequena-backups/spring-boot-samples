@@ -1,6 +1,6 @@
 spring:
   application:
-    name: sample_spring_boot_data_redis
+    name: sample
   cloud:
     config:
      enabled: true
