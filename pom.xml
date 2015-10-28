@@ -54,11 +54,6 @@
 		<checkstyle.version>6.4.1</checkstyle.version>
 		<modelmapper.version>0.7.5</modelmapper.version>
 		<lombok.version>1.16.6</lombok.version>
-		<!-- -->
-		<maven-lombok-plugin.version>1.16.2.0</maven-lombok-plugin.version>
-		<maven-checkstyle-plugin.version>2.15</maven-checkstyle-plugin.version>
-		<checkstyle.configlocation>add url</checkstyle.configlocation>
-		<checkstyle.suppressionslocation>add url</checkstyle.suppressionslocation>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -134,11 +129,6 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-security</artifactId>
-				<version>${spring-boot.version}</version>
-			</dependency>
 			<!-- Spring Cloud -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -158,12 +148,14 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-config-server</artifactId>
 				<version>${spring-cloud.version}</version>
+				<type>pom</type>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-config-client</artifactId>
 				<version>${spring-cloud.version}</version>
 				<scope>import</scope>
+				<type>pom</type>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -350,67 +342,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-						<manifestEntries>
-							<Specification-Title>${project.artifactId}</Specification-Title>
-							<Specification-Version>${project.version}</Specification-Version>
-							<Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
-							<Implementation-Version>${git.revision}</Implementation-Version>
-							<Implementation-Build>${git.buildnumber}</Implementation-Build>
-							<Implementation-Vendor-Id></Implementation-Vendor-Id>
-							<X-Git-Branch>${git.branch}</X-Git-Branch>
-							<X-Git-Tag>${git.tag}</X-Git-Tag>
-							<X-Git-Commits-Count>${git.commitsCount}</X-Git-Commits-Count>
-						</manifestEntries>
-					</archive>
-				</configuration>
 			</plugin>
-			<!-- enable JGit plugin -->
-			<plugin>
-				<groupId>ru.concerteza.buildnumber</groupId>
-				<artifactId>maven-jgit-buildnumber-plugin</artifactId>
-				<version>1.2.9</version>
-				<executions>
-					<execution>
-						<id>git-buildnumber</id>
-						<goals>
-							<goal>extract-buildnumber</goal>
-						</goals>
-						<phase>prepare-package</phase>
-						<configuration>
-							<javaScriptBuildnumberCallback>
-								branch + "_" +
-								revision.substring(10, 20) + "_" +
-								shortRevision + "_" +
-								commitsCount*42
-							</javaScriptBuildnumberCallback>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.codehaus.mojo</groupId> -->
-<!-- 				<artifactId>buildnumber-maven-plugin</artifactId> -->
-<!-- 				<version>1.3</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase>validate</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>create</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 				<configuration> -->
-<!-- 					<doCheck>false</doCheck> -->
-<!-- 					<doUpdate>false</doUpdate> -->
-<!-- 					<timestampFormat>{0,date,yyyy-MM-dd HH:mm:ss}</timestampFormat> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
+			<!-- -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -431,81 +364,7 @@
 					<junitArtifactName>junit:junit</junitArtifactName>
 					<argLine>-Xmx512m</argLine>
 					<argLine>-Dfile.encoding=UTF-8</argLine>
-					<argLine>${jacoco.agent.surefire.argLine} -Dfile.encoding=UTF-8</argLine>
-				</configuration>
-			</plugin>
-			<!-- Coverage for UT-IT with JaCoCo -->
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.4.201502262128</version>
-				<executions>
-					<execution>
-						<id>pre-unit-test</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-						<configuration>
-							<destFile>${project.build.directory}/jacoco.exec</destFile>
-							<propertyName>jacoco.agent.surefire.argLine</propertyName>
-						</configuration>
-					</execution>
-					<execution>
-						<id>post-unit-test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-						<configuration>
-							<dataFile>${project.build.directory}/jacoco.exec</dataFile>
-						</configuration>
-					</execution>
-					<execution>
-						<id>pre-integration-test</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-						<configuration>
-							<destFile>${project.build.directory}/jacoco-it.exec</destFile>
-							<propertyName>jacoco.agent.failsafe.argLine</propertyName>
-						</configuration>
-					</execution>
-					<execution>
-						<id>post-integration-test</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-						<configuration>
-							<dataFile>${project.build.directory}/jacoco-it.exec</dataFile>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!--Check Style -->
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-checkstyle-plugin</artifactId> 
-				<version>${maven-checkstyle-plugin.version}</version> <configuration> <includeTestSourceDirectory>true</includeTestSourceDirectory> 
-				<configLocation>${checkstyle.configlocation}</configLocation> <suppressionsLocation>${checkstyle.suppressionslocation}</suppressionsLocation> 
-				<suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression> 
-				</configuration> <executions> <execution> <id>checkstyle</id> <phase>validate</phase> 
-				<goals> <goal>check</goal> </goals> <configuration> <failOnViolation>true</failOnViolation> 
-				</configuration> </execution> </executions> <dependencies> <dependency> <groupId>com.puppycrawl.tools</groupId> 
-				<artifactId>checkstyle</artifactId> <version>${checkstyle.version}</version> 
-				</dependency> </dependencies> </plugin> -->
-			<!-- -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.10</version>
-				<configuration>
-					<jeeversion>${java.version}</jeeversion>
-					<manifest>${project.basedir}/src/main/resources/META-INF/MANIFEST.MF</manifest>
-					<downloadSources>false</downloadSources>
-					<downloadJavadocs>false</downloadJavadocs>
-					<additionalProjectFacets>
-						<useProjectReferences>true</useProjectReferences>
-					</additionalProjectFacets>
+					<!-- <argLine>${jacoco.agent.surefire.argLine} -Dfile.encoding=UTF-8</argLine> -->
 				</configuration>
 			</plugin>
 		</plugins>
