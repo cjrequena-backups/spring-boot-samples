@@ -13,7 +13,11 @@
 		<start-class>com.sample.SampleBootMainApp</start-class>
 	</properties>
 	<dependencies>
-		
+		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-manifests</artifactId>
+			<version>1.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
