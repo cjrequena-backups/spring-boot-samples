@@ -20,9 +20,9 @@
 		</developer>
 	</developers>
 	<modules>
-		<module>sample-spring-boot-simple</module>
-		<module>sample-spring-boot-ehcache</module>
-		<module>sample-spring-boot-data-redis</module>
+		<module>spring-boot-simple-sample</module>
+		<module>spring-boot-ehcache-sample</module>
+		<module>spring-boot-data-redis-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>

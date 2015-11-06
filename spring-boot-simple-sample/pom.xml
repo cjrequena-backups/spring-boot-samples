@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sample.ehcache</groupId>
-	<artifactId>sample-spring-boot-ehcache</artifactId>
+	<groupId>com.sample.simple</groupId>
+	<artifactId>spring-boot-simple-sample</artifactId>
 	<!-- <version>0.0.1-SNAPSHOT</version> -->
 	<parent>
 		<groupId>com.sample</groupId>
@@ -10,16 +10,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<properties>
-		<start-class>com.sample.SampleEhCacheMainApp</start-class>
+		<start-class>com.sample.SampleBootMainApp</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>net.sf.ehcache</groupId>
-			<artifactId>ehcache</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-manifests</artifactId>
+			<version>1.1</version>
 		</dependency>
 	</dependencies>
 	<build>
