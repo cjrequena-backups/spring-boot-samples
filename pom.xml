@@ -23,6 +23,7 @@
 		<module>spring-boot-simple-sample</module>
 		<module>spring-boot-ehcache-sample</module>
 		<module>spring-boot-data-redis-sample</module>
+		<module>spring-boot-aop-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>
@@ -128,6 +129,11 @@
 						<artifactId>mockito-core</artifactId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+				<version>${spring-boot.version}</version>
 			</dependency>
 			<!-- Spring Cloud -->
 			<dependency>
@@ -265,11 +271,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!-- Spring Cloud -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-config-client</artifactId>
-		</dependency>
+		
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.jmockit</groupId>
