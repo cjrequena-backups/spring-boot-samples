@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.SampleRedisMainApp;
 import com.sample.configurattion.Constants;
-import com.sample.domain.SampleDomain;
-import com.sample.service.ICacheService;
+import com.sample.domain.SampleRedisDomain;
+import com.sample.repository.IRedisRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SampleRedisMainApp.class)
@@ -24,36 +24,36 @@ import com.sample.service.ICacheService;
 @Transactional
 public class SampleRedisServiceTest {
 
-	private SampleDomain domain;
+	private SampleRedisDomain domain;
 
 	@Autowired
-	ICacheService<SampleDomain> cacheService;
+	IRedisRepository<SampleRedisDomain> sampleRedisRepository;
 
 	@Before
 	public void setUp() throws Exception {
-		domain = new SampleDomain("1", "DOMAIN_1");
+		domain = new SampleRedisDomain("1", "DOMAIN_1");
 	}
 
 	@Test
 	public void testfindAll() {
-		cacheService.getAll();
-		// assertThat(cacheService.findAll()).hasSize(totalDomains);
+		sampleRedisRepository.getAll();
+		// assertThat(sampleRedisRepository.findAll()).hasSize(totalDomains);
 	}
 
 	@Test
 	public void testSave() {
-		cacheService.put(domain);
+		sampleRedisRepository.put(domain);
 	}
 
 	@Test
 	public void testFind() {
-		cacheService.get(domain);
+		sampleRedisRepository.get(domain);
 	}
 
 	@Test
 	public void testDelete() {
-		cacheService.delete(domain);
-		// assertThat(cacheService.findAll()).hasSize(totalDomains - 1);
+		sampleRedisRepository.delete(domain);
+		// assertThat(sampleRedisRepository.findAll()).hasSize(totalDomains - 1);
 	}
 
 }

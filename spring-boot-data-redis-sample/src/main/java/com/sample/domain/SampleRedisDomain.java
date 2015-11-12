@@ -3,7 +3,7 @@ package com.sample.domain;
 import lombok.Data;
 
 @Data
-public class SampleDomain implements Cacheable {
+public class SampleRedisDomain implements Cacheable {
 
 	/**
 	 * 
@@ -12,14 +12,14 @@ public class SampleDomain implements Cacheable {
 
 	public static final String OBJECT_KEY = "SAMPLE_DOMAIN";
 
-	public SampleDomain() {
+	public SampleRedisDomain() {
 	}
 
-	public SampleDomain(String id) {
+	public SampleRedisDomain(String id) {
 		this.id = id;
 	}
 
-	public SampleDomain(String id, String name) {
+	public SampleRedisDomain(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
