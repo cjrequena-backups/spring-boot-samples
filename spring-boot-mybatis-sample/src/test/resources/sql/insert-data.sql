@@ -1,0 +1,1 @@
+INSERT INTO sample VALUES (1, 'Carlos','Requena', 'crequena@hotelbeds.com');

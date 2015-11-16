@@ -24,6 +24,7 @@
 		<module>spring-boot-ehcache-sample</module>
 		<module>spring-boot-data-redis-sample</module>
 		<module>spring-boot-aop-sample</module>
+		<module>spring-boot-mybatis-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>
@@ -45,7 +46,7 @@
 		<apache-commons-pool2.version>2.2</apache-commons-pool2.version>
 		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
 		<ojdbc6.version>11.6</ojdbc6.version>
-		<tomcat-dbcp.version>8.0.23</tomcat-dbcp.version>
+		<hikaricp.version>2.4.1</hikaricp.version>
 		<javax-validation.version>1.1.0.Final</javax-validation.version>
 		<jcabi-manifests.version>1.1</jcabi-manifests.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
@@ -97,6 +98,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-jdbc</artifactId>
 				<version>${spring-boot.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-jdbc</artifactId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
@@ -179,27 +186,16 @@
 				<artifactId>mybatis</artifactId>
 				<version>${mybatis.version}</version>
 			</dependency>
+			<!-- database pool -->
 			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-pool2</artifactId>
-				<version>${apache-commons-pool2.version}</version>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>${hikaricp.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-dbcp2</artifactId>
-				<version>${commons-dbcp2.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.oracle</groupId>
+				<groupId>com.oracle.jdbc</groupId>
 				<artifactId>ojdbc6</artifactId>
-				<scope>provided</scope>
 				<version>${ojdbc6.version}</version>
-			</dependency>
-			<!-- -->
-			<dependency>
-				<groupId>org.apache.tomcat</groupId>
-				<artifactId>tomcat-dbcp</artifactId>
-				<version>${tomcat-dbcp.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.validation</groupId>
