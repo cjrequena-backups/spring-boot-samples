@@ -6,12 +6,17 @@ import lombok.Data;
 public class SampleRedisDomain implements Cacheable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final String OBJECT_KEY = "SAMPLE_DOMAIN";
-
+	/**
+	 *
+	 */
+	public static final String CACHE_NAME = "SAMPLE_CACHE";
+	/**
+	 *
+	 */
 	public SampleRedisDomain() {
 	}
 
@@ -29,13 +34,13 @@ public class SampleRedisDomain implements Cacheable {
 	private String name;
 
 	@Override
-	public String getKey() {
+	public String getObjectKey() {
 		return getId();
 	}
 
 	@Override
-	public String getObjectKey() {
-		return OBJECT_KEY;
+	public String getCacheName() {
+		return CACHE_NAME;
 	}
 
 }

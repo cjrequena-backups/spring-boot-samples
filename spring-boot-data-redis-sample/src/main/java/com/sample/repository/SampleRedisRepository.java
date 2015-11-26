@@ -22,23 +22,23 @@ public class SampleRedisRepository implements IRedisRepository<SampleRedisDomain
 
 	@Override
 	public void put(SampleRedisDomain domain) {
-		redisTemplate.opsForHash().put(domain.getObjectKey(), domain.getKey(), domain);
+		redisTemplate.opsForHash().put(domain.getCacheName(), domain.getObjectKey(), domain);
 	}
 
 	@Override
 	public SampleRedisDomain get(SampleRedisDomain domain) {
-		return (SampleRedisDomain) redisTemplate.opsForHash().get(domain.getObjectKey(), domain.getKey());
+		return (SampleRedisDomain) redisTemplate.opsForHash().get(domain.getCacheName(), domain.getObjectKey());
 	}
 
 	@Override
 	public void delete(SampleRedisDomain domain) {
-		redisTemplate.opsForHash().delete(domain.getObjectKey(), domain.getKey());
+		redisTemplate.opsForHash().delete(domain.getCacheName(), domain.getObjectKey());
 	}
 
 	@Override
 	public List<SampleRedisDomain> getAll() {
 		List<SampleRedisDomain> domains = new ArrayList<SampleRedisDomain>();
-		for (Object domain : redisTemplate.opsForHash().values(SampleRedisDomain.OBJECT_KEY)) {
+		for (Object domain : redisTemplate.opsForHash().values(SampleRedisDomain.CACHE_NAME)) {
 			domains.add((SampleRedisDomain) domain);
 		}
 		return domains;
