@@ -25,6 +25,7 @@
 		<module>spring-boot-data-redis-sample</module>
 		<module>spring-boot-aop-sample</module>
 		<module>spring-boot-mybatis-sample</module>
+		<module>spring-boot-soapwebservice-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>
@@ -55,6 +56,7 @@
 		<junit.version>4.12</junit.version>
 		<checkstyle.version>6.4.1</checkstyle.version>
 		<modelmapper.version>0.7.5</modelmapper.version>
+		<wsdl4j.version>1.6.3</wsdl4j.version>
 		<lombok.version>1.16.6</lombok.version>
 	</properties>
 	<dependencyManagement>
@@ -175,6 +177,13 @@
 				<artifactId>spring-cloud-starter-eureka-server</artifactId>
 				<version>${spring-cloud.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>wsdl4j</groupId>
+				<artifactId>wsdl4j</artifactId>
+				<version>${wsdl4j.version}</version>
+			</dependency>
+
+
 			<!-- Database -->
 			<dependency>
 				<groupId>org.mybatis</groupId>
@@ -267,7 +276,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		
+
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.jmockit</groupId>
