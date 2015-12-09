@@ -1,11 +1,12 @@
-*.class
 *.DS_Store
+*.class
+*.iml
 .settings
 .project
 .classpath
+.idea
 bin
 target
-.svn
 
 
 # Mobile Tools for Java (J2ME)
