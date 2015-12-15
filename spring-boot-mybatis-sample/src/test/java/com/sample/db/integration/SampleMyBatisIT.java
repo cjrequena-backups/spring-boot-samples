@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @SpringApplicationConfiguration(classes = {MainApplication.class, DatabaseConfigurationTest.class})
 @ActiveProfiles(Constants.SPRING_PROFILE_TESTING)
 @WebIntegrationTest
-public class SampleIntegrationTests {
+public class SampleMyBatisIT {
 
 	@Autowired
 	SampleMapper sampleMapper;

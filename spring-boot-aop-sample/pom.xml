@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>spring-boot-aop-sample</artifactId>
 	<properties>
-		<start-class>com.sample.aop.MainApplication</start-class>
+		<start-class>com.sample.aop.AopApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sample.webservice;
+package com.sample.webservice.test.integration;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -35,7 +35,7 @@ import com.sample.webservice.country.GetCountryRequest;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MainApplication.class)
 @WebIntegrationTest(randomPort = true)
-public class ApplicationTests {
+public class SoapApplicationIT {
 
 	private Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 

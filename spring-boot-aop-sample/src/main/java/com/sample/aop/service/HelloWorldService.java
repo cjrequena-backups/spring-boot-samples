@@ -12,12 +12,12 @@ public class HelloWorldService {
 	private String name;
 
 	public String getHelloMessage() {
-		return "Hello " + name;
+		return "Not Monitored Method - Hello " + name;
 	}
 
 	@Monitored
 	public String getHelloMessageAnnotated() {
-		return "Hello " + name;
+		return "Monitored Method - Hello " + name ;
 	}
 
 }

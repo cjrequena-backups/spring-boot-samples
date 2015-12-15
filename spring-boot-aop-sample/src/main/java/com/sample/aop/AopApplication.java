@@ -7,8 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sample.aop.service.HelloWorldService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootApplication
-public class MainApplication implements CommandLineRunner {
+@Slf4j
+public class AopApplication implements CommandLineRunner {
 	// Simple example shows how an application can spy on itself with AOP
 
 	@Autowired
@@ -21,6 +24,6 @@ public class MainApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(MainApplication.class, args);
+		SpringApplication.run(AopApplication.class, args);
 	}
 }

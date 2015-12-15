@@ -1,4 +1,4 @@
-package com.sample.test.service;
+package com.sample.redis.test.integration;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,18 +11,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sample.SampleRedisMainApp;
+import com.sample.RedisApplication;
 import com.sample.configurattion.Constants;
 import com.sample.domain.SampleRedisDomain;
 import com.sample.repository.IRedisRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SampleRedisMainApp.class)
+@SpringApplicationConfiguration(classes = RedisApplication.class)
 @ActiveProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)
 @WebAppConfiguration
 @IntegrationTest
 @Transactional
-public class SampleRedisServiceTest {
+public class RedisApplicationIT {
 
 	private SampleRedisDomain domain;
 

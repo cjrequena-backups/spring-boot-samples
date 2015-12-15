@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sample;
+package com.sample.ehcache.integration;
 
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,12 +29,13 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.sample.EhCacheApplication;
 import com.sample.domain.Country;
 import com.sample.repository.CountryRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = SampleEhCacheMainApp.class)
-public class SampleCacheApplicationTests {
+@SpringApplicationConfiguration(classes = EhCacheApplication.class)
+public class EhCacheApplicationIT {
 
 	@Autowired
 	private CacheManager cacheManager;

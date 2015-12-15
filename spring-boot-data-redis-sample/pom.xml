@@ -10,7 +10,7 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<properties>
-		<start-class>com.sample.SampleRedisMainApp</start-class>
+		<start-class>com.sample.RedisApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>

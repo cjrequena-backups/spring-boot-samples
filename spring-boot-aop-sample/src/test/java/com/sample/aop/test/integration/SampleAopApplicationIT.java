@@ -1,4 +1,4 @@
-package com.sample.aop;
+package com.sample.aop.test.integration;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,13 +8,13 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.boot.test.OutputCapture;
 
-/**
- * Tests for {@link MainApplication}.
- *
- * @author Dave Syer
- * @author Phillip Webb
- */
-public class SampleAopApplicationTests {
+import com.sample.aop.AopApplication;
+
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
+public class SampleAopApplicationIT {
 
 	@Rule
 	public OutputCapture outputCapture = new OutputCapture();
@@ -29,17 +29,17 @@ public class SampleAopApplicationTests {
 	@After
 	public void after() {
 		if (profiles != null) {
-			System.setProperty("spring.profiles.active", profiles);
+			log.info("spring.profiles.active", profiles);
 		} else {
-			System.clearProperty("spring.profiles.active");
+			log.info("spring.profiles.active");
 		}
 	}
 
 	@Test
 	public void testDefaultSettings() throws Exception {
-		MainApplication.main(new String[0]);
+		AopApplication.main(new String[0]);
 		String output = outputCapture.toString();
-		assertTrue("Wrong output: " + output, output.contains("Hello Carlos"));
+		assertTrue("Wrong output: " + output, output.contains("Monitored Method"));
 	}
 
 }
