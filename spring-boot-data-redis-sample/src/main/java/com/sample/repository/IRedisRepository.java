@@ -2,7 +2,7 @@ package com.sample.repository;
 
 import java.util.List;
 
-import com.sample.domain.Cacheable;
+import com.sample.entity.Cacheable;
 
 public interface IRedisRepository<T extends Cacheable> {
 

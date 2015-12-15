@@ -1,5 +1,6 @@
 package com.sample.repository;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,37 +10,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import com.sample.domain.SampleRedisDomain;
+import com.sample.annotation.CacheName;
+import com.sample.entity.SampleRedisEntity;
 
 import lombok.Data;
 
 @Data
 @Component
-public class SampleRedisRepository implements IRedisRepository<SampleRedisDomain> {
+public class SampleRedisRepository implements IRedisRepository<SampleRedisEntity> {
 
 	@Autowired
-	private RedisTemplate<String, SampleRedisDomain> redisTemplate;
+	private RedisTemplate<String, SampleRedisEntity> redisTemplate;
 
 	@Override
-	public void put(SampleRedisDomain domain) {
-		redisTemplate.opsForHash().put(domain.getCacheName(), domain.getObjectKey(), domain);
+	public void put(SampleRedisEntity domain) {
+		redisTemplate.opsForHash().put(domain.getCacheName(), domain.getKey(), domain);
 	}
 
 	@Override
-	public SampleRedisDomain get(SampleRedisDomain domain) {
-		return (SampleRedisDomain) redisTemplate.opsForHash().get(domain.getCacheName(), domain.getObjectKey());
+	public SampleRedisEntity get(SampleRedisEntity domain) {
+		return (SampleRedisEntity) redisTemplate.opsForHash().get(domain.getCacheName(), domain.getKey());
 	}
 
 	@Override
-	public void delete(SampleRedisDomain domain) {
-		redisTemplate.opsForHash().delete(domain.getCacheName(), domain.getObjectKey());
+	public void delete(SampleRedisEntity domain) {
+		redisTemplate.opsForHash().delete(domain.getCacheName(), domain.getKey());
 	}
 
 	@Override
-	public List<SampleRedisDomain> getAll() {
-		List<SampleRedisDomain> domains = new ArrayList<SampleRedisDomain>();
-		for (Object domain : redisTemplate.opsForHash().values(SampleRedisDomain.CACHE_NAME)) {
-			domains.add((SampleRedisDomain) domain);
+	public List<SampleRedisEntity> getAll() {
+		Annotation annotation = SampleRedisEntity.class.getAnnotation(CacheName.class);
+		CacheName cacheName = (CacheName) annotation;
+		List<SampleRedisEntity> domains = new ArrayList<SampleRedisEntity>();
+		for (Object domain : redisTemplate.opsForHash().values(cacheName.value())) {
+			domains.add((SampleRedisEntity) domain);
 		}
 		return domains;
 	}
@@ -50,7 +54,7 @@ public class SampleRedisRepository implements IRedisRepository<SampleRedisDomain
 		Iterator<String> it = keys.iterator();
 
 		while (it.hasNext()) {
-			SampleRedisDomain domain = new SampleRedisDomain(it.next());
+			SampleRedisEntity domain = new SampleRedisEntity(it.next());
 			delete(domain);
 		}
 	}

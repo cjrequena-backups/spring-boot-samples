@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.RedisApplication;
 import com.sample.configurattion.Constants;
-import com.sample.domain.SampleRedisDomain;
+import com.sample.entity.SampleRedisEntity;
 import com.sample.repository.IRedisRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,14 +24,14 @@ import com.sample.repository.IRedisRepository;
 @Transactional
 public class RedisApplicationIT {
 
-	private SampleRedisDomain domain;
+	private SampleRedisEntity domain;
 
 	@Autowired
-	IRedisRepository<SampleRedisDomain> sampleRedisRepository;
+	IRedisRepository<SampleRedisEntity> sampleRedisRepository;
 
 	@Before
 	public void setUp() throws Exception {
-		domain = new SampleRedisDomain("1", "DOMAIN_1");
+		domain = new SampleRedisEntity("1", "DOMAIN_1");
 	}
 
 	@Test

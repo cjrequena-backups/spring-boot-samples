@@ -39,7 +39,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<spring-boot.version>1.2.6.RELEASE</spring-boot.version>
+		<spring-boot.version>1.3.0.RELEASE</spring-boot.version>
 		<spring-cloud.version>1.0.0.RELEASE</spring-cloud.version>
 		<ehcache.version>2.10.0</ehcache.version>
 		<mybatis.version>3.2.8</mybatis.version>
