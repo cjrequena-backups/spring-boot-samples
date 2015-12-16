@@ -1,4 +1,4 @@
-package com.sample.domain;
+package com.sample.entity;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @SuppressWarnings("serial")
-public class Country implements Serializable {
+public class CountryCacheEntity implements Cacheable, Serializable {
 
 	private final String code;
 
@@ -19,14 +19,19 @@ public class Country implements Serializable {
 			return false;
 		}
 
-		Country country = (Country) o;
+		CountryCacheEntity countryCacheEntity = (CountryCacheEntity) o;
 
-		return this.code.equals(country.code);
+		return this.code.equals(countryCacheEntity.code);
 	}
 
 	@Override
 	public int hashCode() {
 		return this.code.hashCode();
+	}
+
+	@Override
+	public String getKey() {
+		return getCode();
 	}
 
 }

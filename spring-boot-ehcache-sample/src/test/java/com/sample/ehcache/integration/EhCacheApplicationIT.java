@@ -24,14 +24,15 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.sample.EhCacheApplication;
-import com.sample.domain.Country;
-import com.sample.repository.CountryRepository;
+import com.sample.entity.CountryCacheEntity;
+import com.sample.repository.ICacheRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = EhCacheApplication.class)
@@ -41,16 +42,26 @@ public class EhCacheApplicationIT {
 	private CacheManager cacheManager;
 
 	@Autowired
-	private CountryRepository countryRepository;
+	@Qualifier("countryRepository")
+	private ICacheRepository<CountryCacheEntity> countryRepository;
 
 	@Test
 	public void validateCache() {
+
 		Cache countries = this.cacheManager.getCache("countries");
 		assertThat(countries, is(notNullValue()));
 		countries.clear(); // Simple test assuming the cache is empty
+
 		assertThat(countries.get("BE"), is(nullValue()));
-		Country be = this.countryRepository.findByCode("BE");
-		assertThat((Country) countries.get("BE").get(), is(be));
+		CountryCacheEntity be = new CountryCacheEntity("BE");
+		this.countryRepository.put(be);
+		assertThat((CountryCacheEntity) countries.get("BE").get(), is(be));
+
+		CountryCacheEntity test = new CountryCacheEntity("TEST");
+		this.countryRepository.put(test);
+		assertThat((CountryCacheEntity) countries.get("TEST").get(), is(test));
+		assertThat(this.countryRepository.get(be).equals((CountryCacheEntity) countries.get("BE").get()), is(true));
+		
 	}
 
 }

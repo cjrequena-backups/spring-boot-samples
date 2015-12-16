@@ -26,6 +26,7 @@
 		<module>spring-boot-aop-sample</module>
 		<module>spring-boot-mybatis-sample</module>
 		<module>spring-boot-soapwebservice-sample</module>
+		<module>spring-boot-cache-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>
@@ -41,7 +42,6 @@
 		<java.version>1.8</java.version>
 		<spring-boot.version>1.3.0.RELEASE</spring-boot.version>
 		<spring-cloud.version>1.0.0.RELEASE</spring-cloud.version>
-		<ehcache.version>2.10.0</ehcache.version>
 		<mybatis.version>3.2.8</mybatis.version>
 		<mybatis-spring.version>1.2.2</mybatis-spring.version>
 		<apache-commons-pool2.version>2.2</apache-commons-pool2.version>
@@ -150,6 +150,12 @@
 				<artifactId>spring-boot-starter-aop</artifactId>
 				<version>${spring-boot.version}</version>
 			</dependency>
+			 <!-- The aim of this module is to try and improve the development-time experience when working on Spring Boot applications. -->
+            <dependency>
+		        <groupId>org.springframework.boot</groupId>
+		        <artifactId>spring-boot-devtools</artifactId>
+		         <version>${spring-boot.version}</version>
+		    </dependency>
 			<!-- Spring Cloud -->
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
@@ -232,13 +238,6 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
-			</dependency>
-			<!-- Ehcache is an open source, standards-based cache that boosts performance, 
-				offloads your database, and simplifies scalability. http://www.ehcache.org/ -->
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache</artifactId>
-				<version>${ehcache.version}</version>
 			</dependency>
 			<!-- Jcabi manifests is a convenient static reader of META-INF/MANIFEST.MF 
 				files. http://manifests.jcabi.com/ -->
