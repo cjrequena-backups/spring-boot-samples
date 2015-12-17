@@ -11,7 +11,8 @@
   	<start-class>com.sample.cache.CacheApplication</start-class>
   </properties>
   <dependencies>
-  		
+  
+ 		
   		<!-- JSR-107 API (uncomment to try the JCache support) -->
 		<!--
 		<dependency>
@@ -21,12 +22,14 @@
 		-->
 
 		<!-- Additional cache providers (uncomment to try them) -->
+		<!--  
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 		</dependency>
+		-->
 		
-		<!--
+		
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast</artifactId>
@@ -35,7 +38,7 @@
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast-spring</artifactId>
 		</dependency>
-		-->
+		
 		<!--
 		<dependency>
 			<groupId>org.infinispan</groupId>
