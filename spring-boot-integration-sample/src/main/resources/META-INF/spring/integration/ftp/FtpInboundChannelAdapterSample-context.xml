@@ -14,12 +14,15 @@
 		id="ftpInbound"
 		channel="ftpChannelInbound" 
 		session-factory="ftpSessionFactory"
-		filename-pattern="*.txt" 
+		filename-pattern="*.pdf" 
 		auto-create-local-directory="true"
+		temporary-file-suffix="downloading"
 		delete-remote-files="false" 
-		remote-directory="/" 
-		local-directory="target/input">
-		<int:poller fixed-rate="1000" />
+		remote-directory="/ftp" 
+		local-directory="target/input"
+		local-filename-generator-expression="new java.text.SimpleDateFormat('yyyy-MM-dd-hhmmssSSS').format(new java.util.Date()) + '.'+ #this"
+		charset="UTF-8">
+		<int:poller  cron="1 * * * * *"/>
 	</int-ftp:inbound-channel-adapter>
 
 	<int:channel id="ftpChannelInbound">

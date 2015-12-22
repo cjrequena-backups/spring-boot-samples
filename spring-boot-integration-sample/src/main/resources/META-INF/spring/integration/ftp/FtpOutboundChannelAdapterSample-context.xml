@@ -14,7 +14,7 @@
 	<int-ftp:outbound-channel-adapter  
 				id="ftpOutbound"
 				channel="ftpChannelOutbound"
-				remote-directory="/"
+				remote-directory="/ftp"
 				session-factory="ftpSessionFactory">
 		<int-ftp:request-handler-advice-chain>
 			<int:retry-advice />

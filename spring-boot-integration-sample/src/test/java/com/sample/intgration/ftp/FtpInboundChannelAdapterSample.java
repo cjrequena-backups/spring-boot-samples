@@ -4,13 +4,11 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.PollableChannel;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,8 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { SampleIntegrationApplication.class })
-@ImportResource("META-INF/spring/integration/ftp/FtpInboundChannelAdapterSample-context.xml")
-// @ImportResource("META-INF/spring/integration/ftp/FtpOutboundChannelAdapterSample-context.xml")
 public class FtpInboundChannelAdapterSample {
 
 	@Autowired
@@ -31,10 +27,7 @@ public class FtpInboundChannelAdapterSample {
 
 	@Test
 	public void runDemo() throws Exception {
-		// ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/spring/integration/FtpInboundChannelAdapterSample-context.xml");
-
-		// PollableChannel ftpChannel = ctx.getBean("ftpChannel", PollableChannel.class);
-
+		
 		try {
 			final File folder = new File("target/input");
 			if (folder.exists()){
