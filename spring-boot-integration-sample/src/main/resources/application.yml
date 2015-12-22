@@ -1,0 +1,6 @@
+greeting: Hello
+ftp:
+  username: crequena
+  password: 123456
+  host: localhost
+  port: 21
