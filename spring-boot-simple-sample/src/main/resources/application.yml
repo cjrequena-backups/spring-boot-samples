@@ -1,5 +1,5 @@
 info:
   app:
-    name: MyService
-    description: My awesome service
+    name: SimpleSpringBootService
+    description: SimpleSpringBootService
     version: 1.0.0
