@@ -28,6 +28,7 @@
 		<module>spring-boot-soapwebservice-sample</module>
 		<module>spring-boot-cache-sample</module>
 		<module>spring-boot-integration-sample</module>
+		<module>spring-boot-jpa-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>
