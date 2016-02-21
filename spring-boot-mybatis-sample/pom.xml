@@ -26,10 +26,6 @@
 			<artifactId>mybatis-spring</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>ojdbc6</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<type>jar</type>
