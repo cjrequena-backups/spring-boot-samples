@@ -34,5 +34,7 @@ public class SampleCacheApplicationIT {
 		assertThat(countries.get("BE"), is(nullValue()));
 		Country be = this.countryRepository.findByCode("BE");
 		assertThat((Country) countries.get("BE").get(), is(be));
+		be = this.countryRepository.findByCode("BE");
+		assertThat((Country) countries.get("BE").get(), is(be));
 	}
 }
