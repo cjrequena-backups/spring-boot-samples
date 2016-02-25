@@ -1,0 +1,6 @@
+datadog:
+ metrics:
+  apiKey: cde1c8bb41fb95eeed3ba12725303f90
+  host: crequena-hbeds
+  period: 10
+  enabled: true

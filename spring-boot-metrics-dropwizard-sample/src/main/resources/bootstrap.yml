@@ -1,0 +1,8 @@
+spring:
+ application: 
+  name: sample_metrics
+---
+spring:
+ profiles:
+  active: dev
+
