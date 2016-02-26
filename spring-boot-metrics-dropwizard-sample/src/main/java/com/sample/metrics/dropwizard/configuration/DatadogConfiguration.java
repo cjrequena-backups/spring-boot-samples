@@ -1,6 +1,7 @@
 package com.sample.metrics.dropwizard.configuration;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.coursera.metrics.datadog.DatadogReporter;
@@ -18,9 +19,11 @@ import org.springframework.jmx.export.MBeanExporter;
 import com.codahale.metrics.JmxReporter;
 import com.codahale.metrics.MetricRegistry;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Data
 @Configuration
 @ConfigurationProperties("datadog.metrics")
 public class DatadogConfiguration {
@@ -37,6 +40,8 @@ public class DatadogConfiguration {
 	/** This flag enables or disables the datadog reporter */
 	private boolean enabled = false;
 
+	/**/
+	List<String> tags;
 	
 	@Autowired
 	private MetricRegistry registry;
@@ -79,7 +84,7 @@ public class DatadogConfiguration {
 		EnumSet<Expansion> expansions = DatadogReporter.Expansion.ALL;
 		HttpTransport httpTransport = new HttpTransport.Builder().withApiKey(getApiKey()).build();
 
-		DatadogReporter reporter = DatadogReporter.forRegistry(registry).withHost(getHost()).withTransport(httpTransport).withExpansions(expansions).build();
+		DatadogReporter reporter = DatadogReporter.forRegistry(registry).withHost(getHost()).withTransport(httpTransport).withExpansions(expansions).withTags(tags).build();
 
 		reporter.start(getPeriod(), TimeUnit.SECONDS);
 
@@ -90,64 +95,5 @@ public class DatadogConfiguration {
 		return reporter;
 	}
 
-	/**
-	 * @return Datadog API key used to authenticate every request to Datadog API
-	 */
-	public String getApiKey() {
-		return apiKey;
-	}
-
-	/**
-	 * @param apiKey
-	 *            Datadog API key used to authenticate every request to Datadog API
-	 */
-	public void setApiKey(String apiKey) {
-		this.apiKey = apiKey;
-	}
-
-	/**
-	 * @return Logical name associated to all the events send by this application
-	 */
-	public String getHost() {
-		return host;
-	}
-
-	/**
-	 * @param host
-	 *            Logical name associated to all the events send by this application
-	 */
-	public void setHost(String host) {
-		this.host = host;
-	}
-
-	/**
-	 * @return Time, in seconds, between every call to Datadog API. The lower this value the more information will be send to Datadog
-	 */
-	public long getPeriod() {
-		return period;
-	}
-
-	/**
-	 * @param period
-	 *            Time, in seconds, between every call to Datadog API. The lower this value the more information will be send to Datadog
-	 */
-	public void setPeriod(long period) {
-		this.period = period;
-	}
-
-	/**
-	 * @return true if DatadogReporter is enabled in this application
-	 */
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	/**
-	 * This flag enables or disables the datadog reporter. This flag is only read during initialization, subsequent changes on this value will no take effect
-	 * 
-	 * @param enabled
-	 */
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+	
 }
