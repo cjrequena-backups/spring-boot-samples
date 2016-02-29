@@ -1,12 +1,8 @@
 package com.sample.metrics.dropwizard;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
-import org.coursera.metrics.datadog.model.DatadogCounter;
-import org.coursera.metrics.datadog.model.DatadogGauge;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.GaugeService;
@@ -67,18 +63,7 @@ public class SampleController {
 		}
 		context.stop();
 
-		// this.gauges.submit("test.metrics.dropwizard.crequena", Math.random() * 1000 + 1000);
-
-		List<String> tags = new ArrayList<String>();
-		tags.add("env:prod");
-		tags.add("version:1.0.0");
-		DatadogCounter counter = new DatadogCounter("PEPE", 1L, 1234L, "crequena-hbeds", tags);
-
-		tags = new ArrayList<String>();
-		tags.add("env:prod");
-		tags.add("version:1.0.0");
-		DatadogGauge gauge = new DatadogGauge("PEPE", 1L, 1234L, "crequena-hbeds", tags);
-
+		this.gauges.submit("test.metrics.dropwizard.crequena", Math.random() * 1000 + 1000);
 		return Collections.singletonMap("message", this.sampleService.getHelloMessage());
 	}
 
