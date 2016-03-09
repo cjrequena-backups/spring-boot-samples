@@ -1,6 +1,19 @@
-datadog:
- metrics:
-  apiKey: cde1c8bb41fb95eeed3ba12725303f90
-  host: crequena-hbeds
-  period: 10
-  enabled: true
+metrics:
+  datadog:
+   # Required
+   enabled: true # This flag enables or disables the datadog reporter
+   transport: http # http | udp 
+   period: 1 # Time, in seconds, between every call to Datadog API. The lower this value the more information will be send to Datadog
+   # HTTP Transport
+   apiKey: cde1c8bb41fb95eeed3ba12725303f90 # Datadog API key used to authenticate every request to Datadog API
+   connectTimeout: # Optional | Seconds
+   socketTimeout:  # Optional | Seconds
+   # UDP Transport
+   statsdHost: # Optional | localhost
+   statsdPort: # Optional | 8125  
+   statsdPrefix: # Optional | empty 
+   # Optional
+   host: crequena-hbeds # Logical name associated to all the events send by this application
+   tags: # Optional | empty 
+   ec2Host: false
+   prefix: # Optional | empty 

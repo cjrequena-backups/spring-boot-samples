@@ -1,12 +1,19 @@
 package com.sample.metrics.dropwizard.configuration;
 
+import static java.util.Arrays.asList;
+
+import java.io.IOException;
 import java.util.EnumSet;
-import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import lombok.Data;
 
 import org.coursera.metrics.datadog.DatadogReporter;
 import org.coursera.metrics.datadog.DatadogReporter.Expansion;
 import org.coursera.metrics.datadog.transport.HttpTransport;
+import org.coursera.metrics.datadog.transport.Transport;
+import org.coursera.metrics.datadog.transport.UdpTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.ExportMetricWriter;
 import org.springframework.boot.actuate.metrics.jmx.JmxMetricWriter;
@@ -15,40 +22,45 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jmx.export.MBeanExporter;
+import org.springframework.util.StringUtils;
 
 import com.codahale.metrics.JmxReporter;
+import com.codahale.metrics.MetricFilter;
 import com.codahale.metrics.MetricRegistry;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Data
 @Configuration
-@ConfigurationProperties("datadog.metrics")
+@ConfigurationProperties("metrics.datadog")
 public class DatadogConfiguration {
 
-	/** Datadog API key used to authenticate every request to Datadog API */
-	private String apiKey;
-
-	/** Logical name associated to all the events send by this application */
-	private String host;
-
-	/** Time, in seconds, between every call to Datadog API. The lower this value the more information will be send to Datadog */
-	private long period;
-
+	// Required
 	/** This flag enables or disables the datadog reporter */
 	private boolean enabled = false;
+	public  String transport;
+	public  Long period;
 
-	/**/
-	List<String> tags;
+	// HTTP Transport
+	public  String apiKey;
+	public  Integer connectTimeout;
+	public  Integer socketTimeout;
+
+	// UDP Transport
+	public  String statsdHost;
+	public  Integer statsdPort;
+	public  String statsdPrefix;
+
+	// Optional
+	public  String host;
+	public  Boolean ec2Host;
+	public  String tags;
+	public  String prefix;
 	
 	@Autowired
-	private MetricRegistry registry;
+	private MetricRegistry metricRegistry;
 
 	@Bean
 	public JmxReporter jmxReporter() {
-		JmxReporter reporter = JmxReporter.forRegistry(registry).build();
+		JmxReporter reporter = JmxReporter.forRegistry(metricRegistry).build();
 		reporter.start();
 		return reporter;
 	}
@@ -58,42 +70,66 @@ public class DatadogConfiguration {
 	MetricWriter metricWriter(MBeanExporter exporter) {
 		return new JmxMetricWriter(exporter);
 	}
-	
+
 	@Bean
 	@Autowired
-	public DatadogReporter datadogReporter(MetricRegistry registry) {
+	protected DatadogReporter createInstance() {
+		DatadogReporter.Builder reporter = DatadogReporter.forRegistry(metricRegistry);
 
-		DatadogReporter reporter = null;
-		if (enabled) {
-			reporter = enableDatadogMetrics(registry);
+		 Transport transportObj;
+		if ("http".equalsIgnoreCase(transport)) {
+			HttpTransport.Builder builder = new HttpTransport.Builder();
+			builder.withApiKey(apiKey);
+			if (connectTimeout != null) {
+				builder.withConnectTimeout(connectTimeout);
+			}
+			if (socketTimeout != null) {
+				builder.withSocketTimeout(socketTimeout);
+			}
+			transportObj = builder.build();
+		} else if ("udp".equalsIgnoreCase(transport) || "statsd".equalsIgnoreCase(transport)) {
+			UdpTransport.Builder builder = new UdpTransport.Builder();
+			if (StringUtils.hasText(statsdHost)) {
+				builder.withStatsdHost(statsdHost);
+			}
+			if (statsdPort != null) {
+				builder.withPort(statsdPort);
+			}
+			if (StringUtils.hasText(statsdPrefix)) {
+				builder.withPrefix(statsdPrefix);
+			}
+			transportObj = builder.build();
 		} else {
-			if (log.isWarnEnabled()) {
-				log.info("Datadog reporter is disabled. To turn on this feature just set 'rJavaServer.metrics.enabled:true' in your config file (property or YAML)");
+			throw new IllegalArgumentException("Invalid Datadog Transport: " + transport);
+		}
+		reporter.withTransport(transportObj);
+
+		if (StringUtils.hasText(tags)) {
+			reporter.withTags(asList(StringUtils.tokenizeToStringArray(tags, ",", true, true)));
+		}
+
+		if (StringUtils.hasText(host)) {
+			reporter.withHost(host);
+		} else if (Boolean.TRUE==ec2Host) {
+			try {
+				reporter.withEC2Host();
+			} catch (IOException e) {
+				throw new IllegalStateException("DatadogReporter.Builder.withEC2Host threw an exception", e);
 			}
 		}
 
-		return reporter;
-	}
-
-	private DatadogReporter enableDatadogMetrics(MetricRegistry registry) {
-
-		if (log.isInfoEnabled()) {
-			log.info("Initializing Datadog reporter using [ host: {}, period(seconds):{}, api-key:{} ]", getHost(), getPeriod(), getApiKey());
+		if (StringUtils.hasText(prefix)) {
+			reporter.withPrefix(prefix);
 		}
-
+		
 		EnumSet<Expansion> expansions = DatadogReporter.Expansion.ALL;
-		HttpTransport httpTransport = new HttpTransport.Builder().withApiKey(getApiKey()).build();
-
-		DatadogReporter reporter = DatadogReporter.forRegistry(registry).withHost(getHost()).withTransport(httpTransport).withExpansions(expansions).withTags(tags).build();
-
-		reporter.start(getPeriod(), TimeUnit.SECONDS);
-
-		if (log.isInfoEnabled()) {
-			log.info("Datadog reporter successfully initialized");
-		}
-
-		return reporter;
+		reporter.withExpansions(expansions);
+		reporter.convertDurationsTo(TimeUnit.SECONDS);
+		reporter.convertRatesTo(TimeUnit.HOURS);
+		reporter.filter(MetricFilter.ALL);
+		DatadogReporter datadogReporter = reporter.build();
+		datadogReporter.start(period, TimeUnit.SECONDS);
+		return datadogReporter;
 	}
 
-	
 }
