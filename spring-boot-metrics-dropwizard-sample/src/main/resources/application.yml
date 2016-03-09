@@ -6,8 +6,8 @@ metrics:
    period: 1 # Time, in seconds, between every call to Datadog API. The lower this value the more information will be send to Datadog
    # HTTP Transport
    apiKey: cde1c8bb41fb95eeed3ba12725303f90 # Datadog API key used to authenticate every request to Datadog API
-   connectTimeout: # Optional | Seconds
-   socketTimeout:  # Optional | Seconds
+   connectTimeout: 5000 # Optional
+   socketTimeout:  5000 # Optional
    # UDP Transport
    statsdHost: # Optional | localhost
    statsdPort: # Optional | 8125  
