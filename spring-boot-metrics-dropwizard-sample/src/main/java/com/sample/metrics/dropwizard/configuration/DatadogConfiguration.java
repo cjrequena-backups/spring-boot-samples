@@ -4,10 +4,7 @@ import static java.util.Arrays.asList;
 
 import java.io.IOException;
 import java.util.EnumSet;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-
-import lombok.Data;
 
 import org.coursera.metrics.datadog.DatadogReporter;
 import org.coursera.metrics.datadog.DatadogReporter.Expansion;
@@ -27,6 +24,8 @@ import org.springframework.util.StringUtils;
 import com.codahale.metrics.JmxReporter;
 import com.codahale.metrics.MetricFilter;
 import com.codahale.metrics.MetricRegistry;
+
+import lombok.Data;
 
 @Data
 @Configuration
