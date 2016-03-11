@@ -15,10 +15,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.sample.cache.Country;
 import com.sample.cache.CountryRepository;
-import com.sample.cache.SampleCacheApplication;
+import com.sample.cache.CacheApplication;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(SampleCacheApplication.class)
+@SpringApplicationConfiguration(CacheApplication.class)
 public class SampleCacheApplicationIT {
 	@Autowired
 	private CacheManager cacheManager;

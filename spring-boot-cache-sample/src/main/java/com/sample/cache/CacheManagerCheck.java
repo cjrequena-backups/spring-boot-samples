@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 public class CacheManagerCheck implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(SampleCacheApplication.class);
+			.getLogger(CacheApplication.class);
 
 	private final CacheManager cacheManager;
 

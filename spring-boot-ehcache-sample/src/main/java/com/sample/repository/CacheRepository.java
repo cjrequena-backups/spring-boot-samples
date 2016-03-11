@@ -1,16 +1,25 @@
 package com.sample.repository;
+import java.util.List;
 
-import java.lang.annotation.Annotation;
+import com.sample.cache.Cacheable;
 
-import com.sample.annotation.CacheName;
 
-public abstract class CacheRepository<T> implements ICacheRepository<T> {
+/**
+*
+* @author crequena
+*
+* @param <T>
+*/
+public interface CacheRepository<T extends Cacheable> {
 
-	@Override
-	public String cacheName() {
-		Annotation annotation = super.getClass().getAnnotation(CacheName.class);
-		CacheName cacheName = (CacheName) annotation;
-		return cacheName.value();
-	}
+	public void put(T entity);
+
+	public T get(T entity);
+
+	public List<T> getAll();
+
+	public void delete(T entity);
+
+	public void deleteAll();
 
 }
