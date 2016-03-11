@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.sample</groupId>
 		<artifactId>spring-boot-samples-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>spring-boot-mybatis-sample</artifactId>
 	<properties>
