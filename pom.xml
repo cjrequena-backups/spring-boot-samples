@@ -62,36 +62,36 @@
 		<wsdl4j.version>1.6.3</wsdl4j.version>
 		<metrics-core.version>3.1.2</metrics-core.version>
 		<lombok.version>1.16.6</lombok.version>
-        <!-- Only unit tests are run by default. -->
-        <skip.integration.tests>true</skip.integration.tests>
-        <skip.unit.tests>true</skip.unit.tests>
+		<!-- Only unit tests are run by default. -->
+		<skip.integration.tests>true</skip.integration.tests>
+		<skip.unit.tests>true</skip.unit.tests>
 	</properties>
-    <profiles>
-        <profile>
-            <id>all-tests</id>
-            <properties>
-                <!-- All tests are run. -->
-                <skip.integration.tests>false</skip.integration.tests>
-                <skip.unit.tests>false</skip.unit.tests>
-            </properties>
-        </profile>
-        <profile>
-            <id>integration-test</id>
-            <properties>
-                <!-- Only integration tests are run. -->
-                <skip.integration.tests>false</skip.integration.tests>
-                <skip.unit.tests>true</skip.unit.tests>
-            </properties>
-        </profile>
-        <profile>
-            <id>unit-test</id>
-            <properties>
-                <!-- Only integration tests are run. -->
-                <skip.integration.tests>true</skip.integration.tests>
-                <skip.unit.tests>false</skip.unit.tests>
-            </properties>
-        </profile>
-    </profiles>
+	<profiles>
+		<profile>
+			<id>all-tests</id>
+			<properties>
+				<!-- All tests are run. -->
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+		</profile>
+		<profile>
+			<id>integration-test</id>
+			<properties>
+				<!-- Only integration tests are run. -->
+				<skip.integration.tests>false</skip.integration.tests>
+				<skip.unit.tests>true</skip.unit.tests>
+			</properties>
+		</profile>
+		<profile>
+			<id>unit-test</id>
+			<properties>
+				<!-- Only integration tests are run. -->
+				<skip.integration.tests>true</skip.integration.tests>
+				<skip.unit.tests>false</skip.unit.tests>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencyManagement>
 		<dependencies>
 			<!-- Spring Boot -->
@@ -207,6 +207,11 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-integration</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-cache</artifactId>
 				<version>${spring-boot.version}</version>
 			</dependency>
 			<!-- The aim of this module is to try and improve the development-time 
