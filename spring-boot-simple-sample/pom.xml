@@ -9,7 +9,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<properties>
-		<start-class>com.sample.SampleBootMainApp</start-class>
+		<start-class>com.sample.SignatureApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
