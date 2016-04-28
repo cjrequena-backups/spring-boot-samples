@@ -28,6 +28,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 	public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
 		wsdl11Definition.setPortTypeName("CountriesPort");
+		wsdl11Definition.setRequestSuffix("RQ");
+		wsdl11Definition.setResponseSuffix("RS");
 		wsdl11Definition.setLocationUri("/ws");
 		wsdl11Definition.setTargetNamespace("http://country.domain.webservice.sample.com");
 		wsdl11Definition.setSchema(countriesSchema);

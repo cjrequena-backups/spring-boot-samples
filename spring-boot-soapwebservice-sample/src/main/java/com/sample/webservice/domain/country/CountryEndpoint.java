@@ -1,4 +1,4 @@
-package com.sample.webservice;
+package com.sample.webservice.domain.country;
 
 import com.sample.webservice.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
