@@ -8,8 +8,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import com.sample.webservice.country.Country;
-import com.sample.webservice.country.Currency;
+import com.sample.webservice.domain.country.Country;
+import com.sample.webservice.domain.country.Currency;
 
 @Component
 public class CountryRepository {

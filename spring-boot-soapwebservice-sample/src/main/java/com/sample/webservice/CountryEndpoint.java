@@ -1,17 +1,18 @@
 package com.sample.webservice;
 
+import com.sample.webservice.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.sample.webservice.country.GetCountryRequest;
-import com.sample.webservice.country.GetCountryResponse;
+import com.sample.webservice.domain.country.CountryRQ;
+import com.sample.webservice.domain.country.CountryRS;
 
 @Endpoint
 public class CountryEndpoint {
-	private static final String NAMESPACE_URI = "http://country.webservice.sample.com";
+	private static final String NAMESPACE_URI = "http://country.domain.webservice.sample.com";
 
 	private CountryRepository countryRepository;
 
@@ -20,10 +21,10 @@ public class CountryEndpoint {
 		this.countryRepository = countryRepository;
 	}
 
-	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "getCountryRequest")
+	@PayloadRoot(namespace = NAMESPACE_URI, localPart = "CountryRQ")
 	@ResponsePayload
-	public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
-		GetCountryResponse response = new GetCountryResponse();
+	public CountryRS getCountry(@RequestPayload CountryRQ request) {
+		CountryRS response = new CountryRS();
 		response.setCountry(countryRepository.findCountry(request.getName()));
 
 		return response;

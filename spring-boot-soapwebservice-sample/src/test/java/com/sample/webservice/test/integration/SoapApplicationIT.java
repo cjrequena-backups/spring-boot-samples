@@ -30,7 +30,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.sample.webservice.MainApplication;
-import com.sample.webservice.country.GetCountryRequest;
+import com.sample.webservice.domain.country.CountryRQ;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = MainApplication.class)
@@ -44,13 +44,13 @@ public class SoapApplicationIT {
 
 	@Before
 	public void init() throws Exception {
-		marshaller.setPackagesToScan(ClassUtils.getPackageName(GetCountryRequest.class));
+		marshaller.setPackagesToScan(ClassUtils.getPackageName(CountryRQ.class));
 		marshaller.afterPropertiesSet();
 	}
 
 	@Test
 	public void testSendAndReceive() {
-		GetCountryRequest request = new GetCountryRequest();
+		CountryRQ request = new CountryRQ();
 		request.setName("Spain");
 		assertNotNull(new WebServiceTemplate(marshaller).marshalSendAndReceive("http://localhost:" + port + "/ws", request));
 	}

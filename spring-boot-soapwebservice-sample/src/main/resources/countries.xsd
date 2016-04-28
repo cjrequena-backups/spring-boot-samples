@@ -1,7 +1,9 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://country.webservice.sample.com"
-           targetNamespace="http://country.webservice.sample.com" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://country.domain.webservice.sample.com"
+           targetNamespace="http://country.domain.webservice.sample.com"
+           elementFormDefault="qualified">
 
-    <xs:element name="getCountryRequest">
+    <xs:element name="CountryRQ" >
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="name" type="xs:string"/>
@@ -9,7 +11,7 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getCountryResponse">
+    <xs:element name="CountryRS">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="country" type="tns:country"/>
