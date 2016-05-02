@@ -18,7 +18,7 @@ public class SignatureUtil {
 
 
         try {
-            String apiKey = "11111111111111111111111111111111111111111111111111111";
+            String apiKey = "bacb3r2vtucwbyugywtvh89u";
 
             // initialize key generator
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
@@ -58,6 +58,9 @@ public class SignatureUtil {
             }else{
                 System.out.println("Signature  No Correct ");
             }
+
+            String signatureApitude = DigestUtils.sha256Hex("bacb3r2vtucwbyugywtvh89u" + "vUxEZvXUJB" + System.currentTimeMillis() / 1000);
+            System.out.println("SIgnature APITUDE " + signatureApitude);
 
         } catch (Exception e) {
             e.printStackTrace();
