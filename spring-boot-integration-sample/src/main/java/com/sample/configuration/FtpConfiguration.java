@@ -1,4 +1,4 @@
-package com.sample.integration.configuration;
+package com.sample.configuration;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -11,7 +11,7 @@
 
 
 	<int:gateway id="gateway" 
-		service-interface="com.sample.integration.ToFtpFlowGateway"
+		service-interface="com.sample.ToFtpFlowGateway"
 		default-request-channel="inbound"/>
 
 	<int-ftp:outbound-gateway 

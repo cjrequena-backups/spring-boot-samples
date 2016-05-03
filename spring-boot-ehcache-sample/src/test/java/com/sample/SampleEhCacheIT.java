@@ -1,4 +1,4 @@
-package com.sample.integration;
+package com.sample;
 
 import java.util.Iterator;
 import java.util.List;

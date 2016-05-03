@@ -3,21 +3,17 @@ package com.sample.intgration.ftp;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sample.integration.SampleIntegrationApplication;
-import com.sample.integration.ToFtpFlowGateway;
+import com.sample.SampleIntegrationApplication;
+import com.sample.ToFtpFlowGateway;
 
-import junit.framework.TestSuite;
 import lombok.extern.slf4j.Slf4j;
 
 /**

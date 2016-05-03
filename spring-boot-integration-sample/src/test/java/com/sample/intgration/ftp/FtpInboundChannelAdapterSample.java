@@ -13,7 +13,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.PollableChannel;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.sample.integration.SampleIntegrationApplication;
+import com.sample.SampleIntegrationApplication;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -30,7 +30,7 @@
 		<module>spring-boot-integration-sample</module>
 		<module>spring-boot-jpa-sample</module>
 		<module>spring-boot-metrics-dropwizard-sample</module>
-		<module>spring-boot-signature-sample</module>
+		<module>spring-boot-security-apikey-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>
