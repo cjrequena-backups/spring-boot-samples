@@ -1,7 +1,7 @@
 package com.sample.util;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.impl.crypto.MacProvider;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -35,13 +35,13 @@ public class SecurityUtils {
 
     public static String generateAccessToken(PrivateKey privateKey, String apiKey) {
         final String privateKeyEncode = Base64.encodeBase64URLSafeString(privateKey.getEncoded());
-        String accessToken = Jwts.builder().setSubject(privateKeyEncode).signWith(SignatureAlgorithm.HS256, apiKey).compact();
+        String accessToken = Jwts.builder().setSubject(apiKey).signWith(SignatureAlgorithm.HS256, privateKeyEncode).compact();
         return accessToken;
     }
 
     public static String generateAccessToken(String privateKey, String apiKey) {
         final String privateKeyEncode = Base64.encodeBase64URLSafeString(privateKey.getBytes());
-        String accessToken = Jwts.builder().setSubject(privateKeyEncode).signWith(SignatureAlgorithm.HS256, apiKey).compact();
+        String accessToken = Jwts.builder().setSubject(apiKey).signWith(SignatureAlgorithm.HS256, privateKeyEncode).compact();
         return accessToken;
     }
 
@@ -56,17 +56,43 @@ public class SecurityUtils {
         return (signer.verify(signature));
     }
 
-    public static Boolean verifySignature(String accessToken,String apiKey, String signature) {
-        return generateSignature(accessToken,apiKey).equals(signature);
+    public static Boolean verifySignature(String accessToken, String apiKey, String signature) {
+        return generateSignature(accessToken, apiKey).equals(signature);
     }
 
-    public static Boolean verifyAccessToken(String accessToken,String apiKey,  PrivateKey privateKey) {
-        final String privateKeyEncode = Base64.encodeBase64URLSafeString(privateKey.getEncoded());
-        return  Jwts.parser().setSigningKey(apiKey).parseClaimsJws(accessToken).getBody().getSubject().equals(privateKeyEncode);
+    public static Boolean verifyAccessToken(String accessToken, String apiKey, PrivateKey privateKey) {
+        try {
+            final String privateKeyEncode = Base64.encodeBase64URLSafeString(privateKey.getEncoded());
+            return Jwts.parser().setSigningKey(privateKeyEncode).parseClaimsJws(accessToken).getBody().getSubject().equals(apiKey);
+        } catch (ExpiredJwtException e) {
+            //e.printStackTrace();
+        } catch (UnsupportedJwtException e) {
+            //e.printStackTrace();
+        } catch (MalformedJwtException e) {
+            //e.printStackTrace();
+        } catch (SignatureException e) {
+            //e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            //e.printStackTrace();
+        }
+        return false;
     }
 
-    public static Boolean verifyAccessToken(String accessToken,String apiKey,  String privateKey) {
-        final String privateKeyEncode = Base64.encodeBase64URLSafeString(privateKey.getBytes());
-        return  Jwts.parser().setSigningKey(apiKey).parseClaimsJws(accessToken).getBody().getSubject().equals(privateKeyEncode);
+    public static Boolean verifyAccessToken(String accessToken, String apiKey, String privateKey) {
+        try {
+            final String privateKeyEncode = Base64.encodeBase64URLSafeString(privateKey.getBytes());
+            return Jwts.parser().setSigningKey(privateKeyEncode).parseClaimsJws(accessToken).getBody().getSubject().equals(apiKey);
+        } catch (ExpiredJwtException e) {
+            e.printStackTrace();
+        } catch (UnsupportedJwtException e) {
+            //e.printStackTrace();
+        } catch (MalformedJwtException e) {
+            //e.printStackTrace();
+        } catch (SignatureException e) {
+            //e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            //e.printStackTrace();
+        }
+        return false;
     }
 }
