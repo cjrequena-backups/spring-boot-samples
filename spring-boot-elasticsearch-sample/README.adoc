@@ -1,0 +1,3 @@
+= Spring Boot Elastic Search With Spring Data Sample
+
+Elasticsearch 1.7.4

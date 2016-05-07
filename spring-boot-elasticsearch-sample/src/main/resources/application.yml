@@ -1,0 +1,18 @@
+info:
+ name: Spring Boot Elasticsearch Sample
+ description: Spring Boot Elasticsearch Sample
+ version: 1.0
+server:
+ port: 8080
+---
+spring:
+ profile: default
+ data:
+  elasticsearch:
+   cluster-name: elasticsearch # Elasticsearch cluster name.
+   cluster-nodes: localhost:9300 #Comma-separated list of cluster node addresses. If not specified, starts a client node.
+   properties:
+    transport:
+     tcp.connect_timeout: 120s # Additional properties used to configure the client.
+   repositories:
+    enabled=true # Enable Elasticsearch repositories.
