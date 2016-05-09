@@ -15,4 +15,4 @@ spring:
     transport:
      tcp.connect_timeout: 120s # Additional properties used to configure the client.
    repositories:
-    enabled=true # Enable Elasticsearch repositories.
+    enabled: true # Enable Elasticsearch repositories.

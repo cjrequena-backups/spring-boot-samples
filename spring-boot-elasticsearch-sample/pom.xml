@@ -9,7 +9,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<properties>
-		<start-class>com.sample.SpringBootElasticsearchSampleApplication</start-class>
+		<start-class>com.sample.ElasticsearchApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>

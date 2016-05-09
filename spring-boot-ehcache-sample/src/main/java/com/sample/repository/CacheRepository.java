@@ -12,14 +12,14 @@ import com.sample.cache.Cacheable;
 */
 public interface CacheRepository<T extends Cacheable> {
 
-	public void put(T entity);
+	 void put(T entity);
 
-	public T get(T entity);
+	 T get(T entity);
 
-	public List<T> getAll();
+	 List<T> getAll();
 
-	public void delete(T entity);
+	 void delete(T entity);
 
-	public void deleteAll();
+	 void deleteAll();
 
 }

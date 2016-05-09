@@ -9,7 +9,7 @@
 	<groupId>com.sample.integration</groupId>
 	<artifactId>spring-boot-integration-sample</artifactId>
 	<properties>
-		<start-class>com.sample.spintegration.IntegrationApplication</start-class>
+		<start-class>com.sample.SampleIntegrationApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
