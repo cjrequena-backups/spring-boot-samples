@@ -1,7 +1,8 @@
-package com.sample;
+package com.sample.integration;
 
 import java.util.Map;
 
+import com.sample.ElasticsearchApplication;
 import com.sample.entity.OperationDocument;
 import com.sample.repository.OperationDocumentRepository;
 import lombok.extern.log4j.Log4j2;
@@ -17,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { ElasticsearchApplication.class })
 @Log4j2
-public class OperationDocumentRepositoryTest {
+public class OperationDocumentRepositoryIT {
 
 	@Autowired
 	private ElasticsearchTemplate elasticsearchTemplate;

@@ -28,10 +28,10 @@
 		<module>spring-boot-soapwebservice-sample</module>
 		<module>spring-boot-cache-sample</module>
 		<module>spring-boot-integration-sample</module>
-		<module>spring-boot-jpa-sample</module>
+		<module>spring-boot-data-jpa-sample</module>
 		<module>spring-boot-metrics-dropwizard-sample</module>
 		<module>spring-boot-security-apikey-sample</module>
-		<module>spring-boot-elasticsearch-sample</module>
+		<module>spring-boot-data-elasticsearch-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>

@@ -12,13 +12,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sample.RedisApplication;
-import com.sample.configurattion.Constants;
 import com.sample.entity.SampleRedisEntity;
 import com.sample.repository.IRedisRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = RedisApplication.class)
-@ActiveProfiles(Constants.SPRING_PROFILE_DEVELOPMENT)
+@ActiveProfiles("dev")
 @WebAppConfiguration
 @IntegrationTest
 @Transactional

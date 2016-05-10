@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sample;
+package com.sample.integration;
 
+import com.sample.ElasticsearchApplication;
 import com.sample.entity.*;
 import com.sample.repository.SampleBookRepository;
 import lombok.extern.log4j.Log4j2;
@@ -55,7 +56,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { ElasticsearchApplication.class })
 @Log4j2
-public class NestedObjectTests {
+public class NestedObjectIT {
 
 	@Autowired
     private ElasticsearchTemplate elasticsearchTemplate;

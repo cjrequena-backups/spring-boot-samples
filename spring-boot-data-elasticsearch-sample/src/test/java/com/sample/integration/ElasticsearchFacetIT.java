@@ -1,5 +1,6 @@
-package com.sample;
+package com.sample.integration;
 
+import com.sample.ElasticsearchApplication;
 import com.sample.entity.Article;
 import com.sample.entity.ArticleBuilder;
 import lombok.extern.log4j.Log4j2;
@@ -36,7 +37,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { ElasticsearchApplication.class })
 @Log4j2
-public class ElasticsearchFacetTests {
+public class ElasticsearchFacetIT {
 
     public static final String RIZWAN_IDREES = "Rizwan Idrees";
     public static final String MOHSIN_HUSEN = "Mohsin Husen";

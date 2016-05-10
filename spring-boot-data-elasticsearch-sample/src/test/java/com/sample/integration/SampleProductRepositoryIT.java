@@ -1,5 +1,6 @@
-package com.sample;
+package com.sample.integration;
 
+import com.sample.ElasticsearchApplication;
 import com.sample.entity.Product;
 import com.sample.repository.SampleProductRepository;
 import lombok.extern.log4j.Log4j2;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = { ElasticsearchApplication.class })
 @Log4j2
-public class SampleProductRepositoryTest {
+public class SampleProductRepositoryIT {
 
     @Resource
     private SampleProductRepository sampleProductRepository;

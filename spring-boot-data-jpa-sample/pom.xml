@@ -6,7 +6,7 @@
 		<artifactId>spring-boot-samples-parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>spring-boot-jpa-sample</artifactId>
+	<artifactId>spring-boot-data-jpa-sample</artifactId>
 	<properties>
 		<start-class>com.sample.SampleJPAApplication</start-class>
 	</properties>
