@@ -22,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {MainApplication.class, DatabaseConfigurationTest.class})
-@ActiveProfiles(Constants.SPRING_PROFILE_TESTING)
 @WebIntegrationTest
 public class SampleMyBatisIT {
 

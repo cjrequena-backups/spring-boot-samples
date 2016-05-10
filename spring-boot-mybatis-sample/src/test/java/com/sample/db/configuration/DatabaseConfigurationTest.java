@@ -16,9 +16,9 @@ import com.sample.db.configuration.DatabaseConfiguration;
 public class DatabaseConfigurationTest {
 
     @Primary
-    @Bean(name = DatabaseConfiguration.DATASOURCE_SAMPLE, destroyMethod = "")
+    @Bean(name="dataSource", destroyMethod="")
     @ConfigurationProperties(prefix = "spring.datasources")
-    public DataSource getDataSource() {
+    public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
                 .addScript("sql/create-db.sql")

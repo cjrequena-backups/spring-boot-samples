@@ -1,0 +1,12 @@
+spring:
+ application:
+  name: elasticsearch-sample
+ cloud:
+  config:
+   enabled: false
+   uri: http://localhost:8888
+   username: user
+   password: s3cr3t
+   failFast: true
+ profiles:
+  active: default

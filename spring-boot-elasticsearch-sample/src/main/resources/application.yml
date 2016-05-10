@@ -1,0 +1,21 @@
+info:
+ app:
+  name: Elasticsearch Sample
+  description: Elasticsearch Sample
+  version: 1.0
+endpoints:
+ restart:
+  enabled: true
+ shutdown:
+  enabled: true
+ health:
+  enabled: true
+  sensitive: false
+
+---
+spring:
+ profile: default
+elasticsearch:
+ clusterName: elasticsearch
+ host: localhost
+ port: 9300

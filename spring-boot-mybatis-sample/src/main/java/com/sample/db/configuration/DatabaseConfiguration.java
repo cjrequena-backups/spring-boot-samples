@@ -34,13 +34,10 @@ import lombok.Data;
 @Configuration
 public class DatabaseConfiguration {
 
-	public static final String DATASOURCE_SAMPLE = "DATASOURCE_SAMPLE";
-
-
-	@Bean(name = DATASOURCE_SAMPLE, destroyMethod = "")
+	@Bean(name = "dataSource", destroyMethod = "")
 	@ConfigurationProperties(prefix = "spring.datasource")
 	@Primary
-	public DataSource getDataSource() {
+	public DataSource dataSource() {
 		return new HikariDataSource();
 	}
 
