@@ -1,7 +1,7 @@
-package com.sample.loader;
+package com.sample.db.elasticsearch.repository;
 
-import com.sample.db.mapper.CountryMapper;
-import com.sample.entity.Country;
+import com.sample.db.mybatis.mapper.CountryMapper;
+import com.sample.db.entity.Country;
 import lombok.extern.log4j.Log4j2;
 import org.elasticsearch.action.admin.indices.flush.FlushRequest;
 import org.elasticsearch.action.bulk.BulkRequestBuilder;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Log4j2
 @Component
-public class CountryLoader implements ICountryLoader{
+public class CountryRepository implements ICountryRepository {
 
     @Autowired
     public CountryMapper countryMapper;
@@ -45,8 +45,8 @@ public class CountryLoader implements ICountryLoader{
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            bulk(bulkRequestBuilder, "countries");
         });
+        bulk(bulkRequestBuilder, "countries");
     }
 
     protected void bulk(BulkRequestBuilder bulkRequestBuilder, String indexName) {

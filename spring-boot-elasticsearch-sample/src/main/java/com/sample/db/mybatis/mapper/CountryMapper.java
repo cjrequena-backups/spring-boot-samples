@@ -1,6 +1,6 @@
-package com.sample.db.mapper;
+package com.sample.db.mybatis.mapper;
 
-import com.sample.entity.Country;
+import com.sample.db.entity.Country;
 
 import java.util.List;
 

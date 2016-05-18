@@ -1,4 +1,4 @@
-package com.sample.db.handler;
+package com.sample.db.mybatis.handler;
 
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedTypes;

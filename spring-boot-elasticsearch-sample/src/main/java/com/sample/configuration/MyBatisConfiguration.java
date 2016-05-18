@@ -24,7 +24,7 @@ import javax.sql.DataSource;
  *
  */
 @Configuration
-@MapperScan("com.sample.db.mapper")
+@MapperScan("com.sample.db.mybatis.mapper")
 public class MyBatisConfiguration {
 
 	@Resource(name="dataSource")

@@ -1,7 +1,7 @@
 package com.sample.controller;
 
-import com.sample.indexer.CountryIndexer;
-import com.sample.loader.CountryLoader;
+import com.sample.db.elasticsearch.mapper.CountryESMapper;
+import com.sample.db.elasticsearch.repository.CountryRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SampleController {
 
 	@Autowired
-	CountryIndexer articleIndexer;
+	CountryESMapper articleIndexer;
     @Autowired
-    CountryLoader countryLoader;
+	CountryRepository countryLoader;
 
 	@RequestMapping("/")
 	@ResponseBody
 	String home() throws Exception{
-		articleIndexer.index();
+		articleIndexer.map();
         countryLoader.loadDataToElasticSearch();
 		log.debug("Hello World");
 		return "Hello World!";
