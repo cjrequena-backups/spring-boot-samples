@@ -1,7 +1,7 @@
 package com.sample.integration;
 
 import com.sample.ElasticsearchApplication;
-import com.sample.db.elasticsearch.mapper.IBookingESMapper;
+import com.sample.db.elasticsearch.index.IBookingESMapper;
 import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.admin.indices.flush.FlushRequest;
