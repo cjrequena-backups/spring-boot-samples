@@ -11,6 +11,6 @@ public interface ICountryRepository {
 
     void loadDataToElasticSearch() throws Exception;
 
-    Country findCountry(String country, List<Filter> exclusiveFilters, List<Filter> inclusiveFilters, int size) throws Exception;
+    List<Country> findCountry(String country, List<Filter> exclusiveFilters, List<Filter> inclusiveFilters, int size) throws Exception;
 
 }

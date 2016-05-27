@@ -7,7 +7,7 @@ public interface ICountryIndex {
 
     void createIndex() throws Exception;
 
-    void deleteIndex() throws Exception;
+    void deleteIndex(String indexName) throws Exception;
 
     void mapIndex() throws Exception;
 

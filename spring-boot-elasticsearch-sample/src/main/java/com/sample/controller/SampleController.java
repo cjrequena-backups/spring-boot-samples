@@ -2,6 +2,7 @@ package com.sample.controller;
 
 import com.sample.db.elasticsearch.index.CountryIndex;
 import com.sample.db.elasticsearch.repository.CountryRepository;
+import com.sample.db.entity.Country;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -22,35 +25,34 @@ public class SampleController {
 	@RequestMapping("/deleteIndex")
 	@ResponseBody
 	String deleteIndex() throws Exception{
-		countryESMapper.deleteIndex();
-		return "Deleted";
+		countryESMapper.deleteIndex("countries");
+		return "Deleted!";
 	}
 
 	@RequestMapping("/createIndex")
 	@ResponseBody
 	String createIndex() throws Exception{
 		countryESMapper.createIndex();
-		return "Created";
+		return "Created!";
 	}
 
 	@RequestMapping("/mapIndex")
 	@ResponseBody
 	String mapIndex() throws Exception{
 		countryESMapper.mapIndex();
-		return "Mapped";
+		return "Mapped!";
 	}
 
 	@RequestMapping("/loadCountries")
 	@ResponseBody
 	String loadCountriesToIndex() throws Exception{
 		countryRepository.loadDataToElasticSearch();
-		return "Hello World!";
+		return "Loaded!";
 	}
 
-	@RequestMapping("/searchCountry/{country}")
+	@RequestMapping("/searchCountry")
 	@ResponseBody
-	String searchCountry(@PathVariable(value = "country") String country) throws Exception{
-		countryRepository.findCountry(country, null, null, 10);
-		return "Hello World!";
+	List<Country> searchCountry(@RequestParam(value = "country") String country) throws Exception{
+		return countryRepository.findCountry(country, null, null, 10);
 	}
 }

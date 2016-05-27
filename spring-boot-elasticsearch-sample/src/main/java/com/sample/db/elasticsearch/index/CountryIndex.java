@@ -17,9 +17,11 @@ import org.springframework.stereotype.Component;
  */
 @Log4j2
 @Component
-public class CountryIndex implements ICountryIndex {
+public class CountryIndex extends AbstractIndex implements ICountryIndex {
 
-    private String indexName = "countries";
+    public static final String INDEX_NAME = "countries";
+
+
 
     @Autowired
     Client elasticSearchClient;
@@ -29,42 +31,49 @@ public class CountryIndex implements ICountryIndex {
     public void createIndex() throws Exception {
         Settings.Builder builder = Settings.builder();
         //
-        builder.put("index.analysis.analyzer.synonym.tokenizer", "whitespace");
-        builder.putArray("index.analysis.analyzer.synonym.filter", "synonym", "lowercase");
-        builder.put("index.analysis.filter.synonym.type", "synonym");
-        //
-        builder.put("index.analysis.tokenizer.ngram_tokenizer.type", "nGram");
-        builder.put("index.analysis.tokenizer.ngram_tokenizer.min_gram", "2");
-        builder.put("index.analysis.tokenizer.ngram_tokenizer.max_gram", "10");
-        builder.putArray("index.analysis.tokenizer.ngram_tokenizer.token_chars", "letter", "digit");
-        builder.putArray("index.analysis.tokenizer.ngram_tokenizer.filter", "lowercase", "digit");
-        //
-        builder.put("index.analysis.analyzer.ngram_generic_analyzer.tokenizer", "ngram_tokenizer");
-        //
-        builder.put("index.analysis.analyzer.ngram_spanish_analyzer.tokenizer", "ngram_tokenizer");
-        builder.put("index.analysis.analyzer.ngram_spanish_analyzer.language", "spanish");
-        builder.putArray("index.analysis.analyzer.ngram_spanish_analyzer.filter", "synonym", "lowercase");
 
-        builder.put("index.analysis.filter.synonym.synonyms_path", "synonym.txt");
+
+        builder.put("number_of_shards", "1");
+        builder.put("index.analysis.filter.autocomplete_filter.type", "edge_ngram");
+        builder.put("index.analysis.filter.autocomplete_filter.min_gram", "1");
+        builder.put("index.analysis.filter.autocomplete_filter.max_gram", "20");
+
+        builder.put("index.analysis.analyzer.autocomplete.type", "custom");
+        builder.put("index.analysis.analyzer.autocomplete.tokenizer", "standard");
+        builder.putArray("index.analysis.analyzer.autocomplete.filter", "lowercase", "autocomplete_filter");
+
+
+
+
+
+//        builder.put("index.analysis.analyzer.synonym.tokenizer", "whitespace");
+//        builder.putArray("index.analysis.analyzer.synonym.filter", "synonym", "lowercase");
+//        builder.put("index.analysis.filter.synonym.type", "synonym");
+//        builder.put("index.analysis.filter.synonym.synonyms_path", "synonym.txt");
+//
+//        builder.put("index.analysis.tokenizer.ngram_tokenizer.type", "nGram");
+//        builder.put("index.analysis.tokenizer.ngram_tokenizer.min_gram", "2");
+//        builder.put("index.analysis.tokenizer.ngram_tokenizer.max_gram", "10");
+//        builder.putArray("index.analysis.tokenizer.ngram_tokenizer.token_chars", "letter", "digit");
+//        builder.putArray("index.analysis.tokenizer.ngram_tokenizer.filter", "lowercase", "digit");
+//
+//        builder.put("index.analysis.analyzer.ngram_generic_analyzer.tokenizer", "ngram_tokenizer");
+//        builder.put("index.analysis.analyzer.ngram_spanish_analyzer.tokenizer", "ngram_tokenizer");
+//        builder.put("index.analysis.analyzer.ngram_spanish_analyzer.language", "spanish");
+//        builder.putArray("index.analysis.analyzer.ngram_spanish_analyzer.filter", "synonym", "lowercase");
+
         elasticSearchClient.
                 admin().
                 indices().
-                create(new CreateIndexRequest(indexName).settings(builder.build())).
+                create(new CreateIndexRequest(INDEX_NAME).settings(builder.build())).
                 actionGet();
     }
 
     @Override
-    public void deleteIndex() throws Exception {
-        boolean exists = elasticSearchClient.admin().indices().prepareExists(indexName).execute().actionGet().isExists();
-        if (exists) {
-            DeleteIndexResponse delete = elasticSearchClient.admin().indices().delete(new DeleteIndexRequest(indexName)).actionGet();
-            if (!delete.isAcknowledged()) {
-                throw new RuntimeException("Could not delete index!");
-            } else {
-                log.info("Index " + indexName + " deleted!");
-            }
-        }
+    public void deleteIndex(String indexName) throws Exception {
+        super.deleteIndex(indexName);
     }
+
 
     @Override
     public void mapIndex() throws Exception {
@@ -84,7 +93,7 @@ public class CountryIndex implements ICountryIndex {
 
         xb.startObject("name");
         xb.field("type", "string");
-        xb.field("analyzer", "ngram_spanish_analyzer");
+        xb.field("analyzer", "autocomplete");
         xb.endObject();
 
         xb.startObject("meta_data_1");
@@ -112,7 +121,7 @@ public class CountryIndex implements ICountryIndex {
         xb.close();
 
         PutMappingResponse putMappingResponse =
-                elasticSearchClient.admin().indices().preparePutMapping(indexName).setType("H").setSource(xb).execute().actionGet();
+                elasticSearchClient.admin().indices().preparePutMapping(INDEX_NAME).setType("COUNTRY").setSource(xb).execute().actionGet();
         if (!putMappingResponse.isAcknowledged()) {
             throw new RuntimeException("Could not create mapping!");
         } else {
