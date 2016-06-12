@@ -33,6 +33,7 @@
 		<module>spring-boot-security-apikey-sample</module>
 		<module>spring-boot-data-elasticsearch-sample</module>
 		<module>spring-boot-elasticsearch-sample</module>
+		<module>spring-boot-batch-sample</module>
 	</modules>
 	<scm>
 		<connection>scm:git:git//github.com/cjrequena/spring-boot-samples.git</connection>
@@ -80,7 +81,7 @@
 	</properties>
 	<profiles>
 		<profile>
-			<id>all-tests</id>
+			<id>all-test</id>
 			<properties>
 				<!-- All tests are run. -->
 				<skip.integration.tests>false</skip.integration.tests>
@@ -229,6 +230,11 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-cache</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-batch</artifactId>
 				<version>${spring-boot.version}</version>
 			</dependency>
 			<!-- The aim of this module is to try and improve the development-time 
