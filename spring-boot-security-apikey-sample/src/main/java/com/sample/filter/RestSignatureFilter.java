@@ -16,13 +16,11 @@ import java.io.IOException;
 @Component
 public class RestSignatureFilter extends OncePerRequestFilter {
 
-    //ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJOamRoWXpsa09HVXRNV0V3TVMwME0yWTNMVGcxT0dZdE1UbGpOMkV5TnpGbE5qVXcifQ.qIpINMwoviUmEtn2pvXI9fILv58dPsMXwNC-3xEvHWU"
-    //API_KEY = "8a87bcbd-02ac-49c1-9039-d61907572a2e"
-    //PRIVATE KEY= "67ac9d8e-1a01-43f7-858f-19c7a271e650"
+    // In order to get a valid accessTokek, apiKey, privateKey. Generate them using test case class SignatureVerificationIT
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String privateKey = "67ac9d8e-1a01-43f7-858f-19c7a271e650";
+        String privateKey = "94ba6287-fe63-4b3b-98db-beefcfccc410";
         String accessToken = request.getHeader(SecurityUtils.ACCESS_TOKEN_HEADER);
         String apiKey = request.getHeader(SecurityUtils.APIKEY_HEADER);
 
