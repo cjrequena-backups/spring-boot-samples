@@ -82,6 +82,11 @@ public class SignatureVerificationIT {
         KeyPair keyPair = SecurityUtils.generateKeyPair(999);
         String accessToken = SecurityUtils.generateAccessToken(keyPair.getPrivate(), apiKey.toString());
         String signature = SecurityUtils.generateSignature(accessToken, apiKey.toString());
+
+        log.info("ACCESS TOKEN: {}", accessToken);
+        log.info("API KEY: {}", apiKey.toString());
+        log.info("SIGNATURE: {}", signature);
+
         boolean verified = SecurityUtils.verifySignature(accessToken, apiKey.toString(), signature);
         assertTrue("Verified", verified);
 
