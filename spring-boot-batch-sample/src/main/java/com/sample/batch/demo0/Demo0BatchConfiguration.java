@@ -38,6 +38,7 @@ public class Demo0BatchConfiguration {
 
     @Autowired
     PrintHelloTasklet printHelloTasklet;
+
     @Autowired
     PrintWorldTasklet printWorldTasklet;
 
@@ -46,7 +47,6 @@ public class Demo0BatchConfiguration {
         return jobBuilderFactory.get("printHelloWorldJob")
                 .start(step1).next(step2).build();
     }
-
 
     // tag::jobstep[]
     @Bean
