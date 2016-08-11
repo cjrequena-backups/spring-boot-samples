@@ -160,23 +160,6 @@
     </profiles>
     <dependencyManagement>
         <dependencies>
-            <!-- Own dependencies-->
-            <dependency>
-                <groupId>com.aurora</groupId>
-                <artifactId>crawler4j2</artifactId>
-                <version>${crawler4j2.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>com.aurora</groupId>
-                <artifactId>pagespeed4j</artifactId>
-                <version>${pagespeed4j.version}</version>
-            </dependency>
             <!-- Spring boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -336,6 +319,11 @@
             </dependency>
             <!-- db -->
             <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${hikaricp.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>${mybatis-spring.version}</version>
@@ -361,63 +349,9 @@
                 <version>${mariadb-java-client.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.hsqldb</groupId>
-                <artifactId>hsqldb</artifactId>
-                <type>jar</type>
-                <scope>test</scope>
-                <version>2.3.2</version>
-            </dependency>
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <type>jar</type>
-                <scope>test</scope>
-                <version>1.4.191</version>
-            </dependency>
-            <dependency>
-                <groupId>org.dbunit</groupId>
-                <artifactId>dbunit</artifactId>
-                <version>${dbunit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.zaxxer</groupId>
-                <artifactId>HikariCP</artifactId>
-                <version>${hikaricp.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${javax-validation.version}</version>
-            </dependency>
-            <!-- Jcabi manifests is a convenient static reader of META-INF/MANIFEST.MF files. http://manifests.jcabi.com/ -->
-            <dependency>
-                <groupId>com.jcabi</groupId>
-                <artifactId>jcabi-manifests</artifactId>
-                <version>${jcabi-manifests.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
-            <!--Orika collect meta-data of your classes to generate mapping objects which can be used together to copy data from one object graph to another, recursively. -->
-            <dependency>
-                <groupId>ma.glasnost.orika</groupId>
-                <artifactId>orika-core</artifactId>
-                <version>${orika-core.version}</version>
-            </dependency>
-            <!-- ModelMapper is an intelligent, refactoring safe object mapping library
-				that automatically maps objects to each other. http://modelmapper.org/ -->
-            <dependency>
-                <groupId>org.modelmapper</groupId>
-                <artifactId>modelmapper</artifactId>
-                <version>${modelmapper.version}</version>
-            </dependency>
-            <!-- Freemarker Templates -->
-            <dependency>
-                <groupId>org.freemarker</groupId>
-                <artifactId>freemarker</artifactId>
-                <version>${freemarker.version}</version>
             </dependency>
             <!-- Testing -->
             <dependency>
@@ -467,6 +401,55 @@
                 <artifactId>json-path-assert</artifactId>
                 <version>${com.jayway.jsonpath.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <type>jar</type>
+                <scope>test</scope>
+                <version>2.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <type>jar</type>
+                <scope>test</scope>
+                <version>1.4.191</version>
+            </dependency>
+            <dependency>
+                <groupId>org.dbunit</groupId>
+                <artifactId>dbunit</artifactId>
+                <version>${dbunit.version}</version>
+            </dependency>
+            <!-- Jcabi manifests is a convenient static reader of META-INF/MANIFEST.MF files. http://manifests.jcabi.com/ -->
+            <dependency>
+                <groupId>com.jcabi</groupId>
+                <artifactId>jcabi-manifests</artifactId>
+                <version>${jcabi-manifests.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <!--Orika collect meta-data of your classes to generate mapping objects which can be used together to copy data from one object graph to another, recursively. -->
+            <dependency>
+                <groupId>ma.glasnost.orika</groupId>
+                <artifactId>orika-core</artifactId>
+                <version>${orika-core.version}</version>
+            </dependency>
+            <!-- ModelMapper is an intelligent, refactoring safe object mapping library
+				that automatically maps objects to each other. http://modelmapper.org/ -->
+            <dependency>
+                <groupId>org.modelmapper</groupId>
+                <artifactId>modelmapper</artifactId>
+                <version>${modelmapper.version}</version>
+            </dependency>
+            <!-- Freemarker Templates -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${freemarker.version}</version>
             </dependency>
             <!--Boilerplate-->
             <dependency>
