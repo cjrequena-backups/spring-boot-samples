@@ -2,17 +2,13 @@ package com.sample.controller;
 
 import com.sample.entity.Product;
 import com.sample.repository.SampleProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import lombok.extern.slf4j.Slf4j;
-
 import javax.annotation.Resource;
 import java.util.List;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 
 @Slf4j
 @Controller
@@ -42,7 +38,7 @@ public class SampleController {
 		//when
 		List<Product> products = sampleProductRepository.findByName("product");
 		//then
-		assertThat(products.size(), is(2));
+		//assertThat(products.size(), is(2));
 		log.debug("Hello World");
 		return products;
 	}

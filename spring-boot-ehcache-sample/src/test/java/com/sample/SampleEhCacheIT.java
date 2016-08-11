@@ -4,8 +4,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -23,6 +25,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = EhCacheApplication.class)
 @WebIntegrationTest(randomPort = true)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SampleEhCacheIT {
 
 
@@ -40,7 +43,7 @@ public class SampleEhCacheIT {
 		entity1.setLastName("lastName1");
 
 		SampleEntity entity2 = new SampleEntity();
-		entity2.setObjectKey(1);
+		entity2.setObjectKey(2);
 		entity2.setId(2);
 		entity2.setEmail("email2");
 		entity2.setFirstName("firstName2");
@@ -67,7 +70,7 @@ public class SampleEhCacheIT {
 	}
 	
 	@Test
-	public void A_testFind() {
+	public void testA() {
 		SampleEntity entity1 = new SampleEntity();
 		entity1.setObjectKey(1);
 		entity1 = sampleEhCacheRepository.get(entity1);
@@ -76,7 +79,7 @@ public class SampleEhCacheIT {
 	}
 	
 	@Test
-	public void B_testfindAll() {
+	public void testB() {
 		List<SampleEntity> list = sampleEhCacheRepository.getAll();
 		for (Iterator<SampleEntity> iterator = list.iterator(); iterator.hasNext();) {
 			SampleEntity SampleEntity = iterator.next();
@@ -86,7 +89,7 @@ public class SampleEhCacheIT {
 	}
 
 	@Test
-	public void testSave() {
+	public void testC() {
 		SampleEntity entity5 = new SampleEntity();
 		entity5.setObjectKey(5);
 		entity5.setId(5);
@@ -97,7 +100,7 @@ public class SampleEhCacheIT {
 	}
 
 	@Test
-	public void testDelete() {
+	public void testD() {
 		SampleEntity entity5 = new SampleEntity();
 		entity5.setId(5);
 		entity5.setId(1);
@@ -109,7 +112,7 @@ public class SampleEhCacheIT {
 	}
 
 	@Test
-	public void testDeleteAll() {
+	public void testE() {
 		sampleEhCacheRepository.deleteAll();
 		// assertThat(sampleRedisRepository.findAll()).hasSize(totalDomains - 1);
 	}

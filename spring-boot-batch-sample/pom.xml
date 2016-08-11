@@ -10,16 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring-boot-batch-sample</artifactId>
     <properties>
-        <start-class>com.sample.batch.SampleBatchApplication</start-class>
+        <start-class>com.sample.springbatch.SampleBatchApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-batch</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
         </dependency>
     </dependencies>
     <build>

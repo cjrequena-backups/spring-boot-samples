@@ -1,0 +1,5 @@
+info:
+ description: Spring Batch Sample
+ version: 1.0
+server:
+ port: ${port:9080}

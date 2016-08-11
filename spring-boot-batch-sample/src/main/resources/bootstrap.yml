@@ -1,0 +1,6 @@
+spring:
+ application: 
+  name: spring-boot-batch-sample
+ profiles:
+  active: default
+
