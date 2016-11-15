@@ -13,29 +13,13 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import lombok.Data;
 
-/**
- * <p>
- * Need to configure the following for each DataSource:
- *
- * - jdbcUrl=jdbc:oracle:thin:@HOST:PORT/BDD driverClassName=oracle.jdbc.OracleDriver
- * - username=xxxxx
- * - password=xxxxx
- * - maximumPoolSize=5
- *
- * Refer to {@link https://github.com/brettwooldridge/HikariCP/wiki/Configuration}. for more information
- * <p>
- * @author
- * @version
- * @since JDK1.8
- * @see
- *
- */
+
 @Data
 @Configuration
 public class DatabaseConfiguration {
 
 	@Bean(name = "dataSource", destroyMethod = "")
-	@ConfigurationProperties(prefix = "spring.datasource")
+	@ConfigurationProperties(prefix = "datasources.chinook")
 	@Primary
 	public DataSource dataSource() {
 		return new HikariDataSource();

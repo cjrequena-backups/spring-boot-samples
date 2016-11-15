@@ -1,76 +1,20 @@
 info:
-  description: Sample Application
+  description: Sample Spring Boot MyBatis Application
   version: 
-endpoints:
-  restart:
-    enabled: true
-  shutdown:
-    enabled: true
-  health:
-    enabled: true
-    sensitive: false
+---
 
 ####################
 # PROFILE unittest #
 ####################
 spring:
-  profiles: unittest
-  datasource:
-    driverClassName: org.h2.Driver
-    jdbcUrl: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password: 
-    maximumPoolSize: 5
-  redis:
-    host: 127.0.0.1
-    port: 6379
-metrics:
-  riemannHost: grafana.test.hotelbeds
-  riemannPort: 5555
-  threshold: 10
-test:
-  props1: TEST PROPEPERTY FROM CLOUD - PROFILE UNITTEST
-
-####################
-# PROFILE test     #
-####################
----
-spring:
-  profiles: test
-  datasource:
-    driverClassName: org.h2.Driver
-    jdbcUrl: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password: 
-    maximumPoolSize: 5
-  redis:
-    host: 127.0.0.1
-    port: 6379
-metrics:
-  riemannHost: grafana.test.hotelbeds
-  riemannPort: 5555
-  threshold: 10
-test:
-  props1: TEST PROPEPERTY FROM CLOUD - PROFILE TEST
-
-####################
-# PROFILE dev      #
-####################
----
-spring:
-  profiles: dev
-  datasource:
-    driverClassName: org.h2.Driver
-    jdbcUrl: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password: 
-    maximumPoolSize: 5
-  redis:
-    host: 127.0.0.1
-    port: 6379
-metrics:
-  riemannHost: grafana.test.hotelbeds
-  riemannPort: 5555
-  threshold: 10
-test:
-  props1: TEST PROPEPERTY FROM CLOUD - DEV
+  profiles: default
+datasources:
+  chinook:
+    jdbcUrl: jdbc:mysql://localhost:3306/Chinook
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    poolName: AtlasHikariCP
+    maxLifetime: 1200000
+    maximumPoolSize: 10
+    minimumIdle: 1

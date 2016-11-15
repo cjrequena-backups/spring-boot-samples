@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>spring-boot-mybatis-sample</artifactId>
 	<properties>
-		<start-class>com.sample.db.MainApplication</start-class>
+		<start-class>com.sample.MainApplication</start-class>
 	</properties>
 	<dependencies>
 		<!-- Spring Boot -->
@@ -30,6 +30,10 @@
 			<artifactId>h2</artifactId>
 			<type>jar</type>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
