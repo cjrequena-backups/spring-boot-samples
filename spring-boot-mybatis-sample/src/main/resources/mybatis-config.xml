@@ -8,7 +8,7 @@
         <setting name="lazyLoadingEnabled" value="true"/>
     </settings>
     <typeAliases>
-        <typeAlias alias="Album" type="com.sample.db.pojos.Album"/>
+        <typeAlias alias="Album" type="com.sample.db.pojos.AlbumEntity"/>
         <typeAlias alias="Artist" type="com.sample.db.pojos.Artist"/>
         <typeAlias alias="Customer" type="com.sample.db.pojos.Customer"/>
         <typeAlias alias="Employee" type="com.sample.db.pojos.Employee"/>
